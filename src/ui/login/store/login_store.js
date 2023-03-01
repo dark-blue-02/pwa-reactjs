@@ -16,7 +16,7 @@ export default class LoginStore {
     async getToken() {
         this.bearerToken = "loading..."
         const token = await this.repository.getAuthTokens()
-        delay(1000);
+        await delay(1000);
         if (token?.bearerToken != null) {
             this.bearerToken = token.bearerToken
         }

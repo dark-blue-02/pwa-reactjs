@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import { LoginScreen } from './ui/login/login_screen';
+import LoginScreen from './ui/login/login_screen';
 
 function App() {
-
   return (
     <div className="App">
-      <LoginScreen name={"Duy"} age={20} />
+      <LoginScreen />
     </div>
   );
 }
