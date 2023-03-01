@@ -13,9 +13,13 @@ export default class LoginStore {
         })
     }
 
-    async getToken() {
+    /**
+     * @param {string} [username]
+     * @param {string} [password]
+     */
+    async getToken(username, password) {
         this.bearerToken = "loading..."
-        const token = await this.repository.getAuthTokens()
+        const token = await this.repository.getAuthTokens({username, password})
         await delay(1000);
         if (token?.bearerToken != null) {
             this.bearerToken = token.bearerToken

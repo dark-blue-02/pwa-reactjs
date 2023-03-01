@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from "react"
-import LoginStore from "./store/login_store";
+import React from "react"
 import { Components } from "./components";
+import { tokenLocalStorage } from "../../data";
 
 export default function LoginScreen() {
-    const loginStore = useMemo(() => new LoginStore(), [])
-    useEffect(() => { loginStore.getToken() }, [loginStore])
+    console.log(tokenLocalStorage.getToken());
+
     const components = Components;
 
     // observer(() => <p>{loginStore.bearerToken}</p>)
