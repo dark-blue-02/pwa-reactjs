@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Svn-Gilroy' ,-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,6 +10,22 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  font-family: 'Svn-Gilroy';
+
+  font-weight: 400;
+
+  src: local('Svn-Gilroy'), local('./assets/font/SVNGilroy-Light.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Svn-Gilroy';
+
+  font-weight: 700;
+
+  src: local('Svn-Gilroy'), local('./assets/font/SVNGilroy-Bold.otf') format('truetype');
 }
 
 /*
@@ -573,16 +589,28 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.block {
-  display: block;
-}
-
 .flex {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
 .h-6 {
   height: 1.5rem;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-4 {
+  height: 1rem;
 }
 
 .w-20 {
@@ -593,53 +621,92 @@ video {
   width: 0.75rem;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
+.flex-\[1\] {
+  flex: 1;
+}
+
 .flex-row {
   flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
   align-items: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-between {
   justify-content: space-between;
+}
+
+.self-center {
+  align-self: center;
 }
 
 .whitespace-nowrap {
   white-space: nowrap;
 }
 
-.to-primary {
-  --tw-gradient-to: #0073C7;
-}
-
 .fill-primary {
   fill: #0073C7;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
 }
 
 .pl-7 {
   padding-left: 1.75rem;
 }
 
-.pr-4 {
-  padding-right: 1rem;
+.pr-6 {
+  padding-right: 1.5rem;
 }
 
 .pt-6 {
   padding-top: 1.5rem;
 }
 
-.text-center {
-  text-align: center;
+.align-top {
+  vertical-align: top;
 }
 
-.align-middle {
-  vertical-align: middle;
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 .font-semibold {
@@ -650,7 +717,32 @@ video {
   line-height: 1rem;
 }
 
-.text-primary {
+.leading-\[22px\] {
+  line-height: 22px;
+}
+
+.leading-\[28px\] {
+  line-height: 28px;
+}
+
+.leading-\[46px\] {
+  line-height: 46px;
+}
+
+.tracking-\[-0\.4px\] {
+  letter-spacing: -0.4px;
+}
+
+.tracking-\[-1\.2px\] {
+  letter-spacing: -1.2px;
+}
+
+.text-label {
   --tw-text-opacity: 1;
-  color: rgb(0 115 199 / var(--tw-text-opacity));
+  color: rgb(115 115 115 / var(--tw-text-opacity));
+}
+
+.text-label-form {
+  --tw-text-opacity: 1;
+  color: rgb(22 25 44 / var(--tw-text-opacity));
 }

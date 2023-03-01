@@ -13,6 +13,7 @@ module.exports = {
         'label-form': '#16192C',
         'label': '#737373',
         'hint': '#C6C6C6',
+        'F8F8F8': '#F8F8F8',
       }
     },
   },

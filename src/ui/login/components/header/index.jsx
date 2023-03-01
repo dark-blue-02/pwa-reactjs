@@ -1,16 +1,16 @@
 import React from "react";
-import eOfficeLogo from '../../../../assets/svg/my-e-office-logo.svg'
+import logo from '../../../../assets/svg/blue-logo.svg'
 import headsetLogo from '../../../../assets/svg/support.svg'
 
 export default function Header() {
-    return <div className="flex pt-6 pl-7 pr-4 justify-between items-center">
+    return <div className="flex justify-between items-center">
         <Logo />
         <Support />
     </div>
 }
 
 function Logo() {
-    return <img src={eOfficeLogo} className=" w-20 h-6 fill-primary" alt="" />
+    return <img src={logo} className=" w-20 h-6 fill-primary" alt="" />
 }
 
 function Support() {
