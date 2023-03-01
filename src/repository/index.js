@@ -1,3 +1,3 @@
-const { authenticationRepository } = require("./auth_repo");
+import { authenticationRepository } from "./auth_repo";
 
 export { authenticationRepository }

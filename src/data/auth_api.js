@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-export const AuthenticationApi = {
+export const authenticationApi = {
     baseUrl: "https://stg.sso.fafu.com.vn/auth/realms/VIMC/protocol/openid-connect",
     async getAuthTokens() {
-        const response = await axios.post(`${this.baseUrl}/token`, {
+        const response = await axios
+            .post(`${this.baseUrl}/token`, {
             client_id: "vimc",
             username: "admin_vpdt",
             password: "123!@#",

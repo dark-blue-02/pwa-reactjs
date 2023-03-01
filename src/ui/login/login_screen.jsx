@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite";
 import React, { useEffect, useMemo } from "react"
-import LoginState from "./state/login_state";
+import LoginStore from "./store/login_store";
 
 export const LoginScreen = ({ name, age }) => {
-    const loginState = useMemo(() => new LoginState(), []);
-    useEffect(() => { loginState.getToken() }, [loginState]);
+    const loginStore = useMemo(() => new LoginStore(), [])
+    useEffect(() => { loginStore.getToken() }, [loginStore])
 
-    const Screen = observer(() => <p>{loginState.bearerToken}</p>)
+    const Screen = observer(() => <p>{loginStore.bearerToken}</p>)
 
     return <>
         <p>Hello {name}</p>

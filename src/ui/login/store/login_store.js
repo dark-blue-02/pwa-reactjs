@@ -1,9 +1,10 @@
 import { authenticationRepository } from "../../../repository";
 import { makeObservable, observable, action } from "mobx"
+import { delay } from "../../../utils";
 
-export default class LoginState {
-    repository = authenticationRepository;
-    bearerToken = "";
+export default class LoginStore {
+    repository = authenticationRepository
+    bearerToken = ""
 
     constructor() {
         makeObservable(this, {
@@ -14,10 +15,10 @@ export default class LoginState {
 
     async getToken() {
         this.bearerToken = "loading..."
-        const token = await this.repository.getAuthTokens();
-        await new Promise((it) => { setTimeout(it, 2000); console.log("timeout") })
+        const token = await this.repository.getAuthTokens()
+        delay(1000);
         if (token?.bearerToken != null) {
-            this.bearerToken = token.bearerToken;
+            this.bearerToken = token.bearerToken
         }
     }
 }
