@@ -12,6 +12,11 @@ export default function HomeScreen() {
     useEffect(
         () => {
             store.getCounter({ bearerToken: bearerToken })
+            store.getWorkScheduleList({
+                bearerToken: bearerToken,
+                fromDate: '2023-01-30',
+                toDate: '2023-02-10'
+            })
         },
         [store],
     )

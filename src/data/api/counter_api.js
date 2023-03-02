@@ -10,9 +10,6 @@ export const counterApi = {
             `${this._instance.getUri()}/sidemenu_counter` +
             `?type=WORK&type=PROPOSAL&type=INTERNAL_MESSAGE`,
             {
-                // params: {
-                //     type: ["WORK", "PROPOSAL", "INTERNAL_MESSAGE"],
-                // },
                 headers: {
                     "Authorization": bearerToken,
                 },

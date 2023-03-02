@@ -12,12 +12,24 @@ export default class HomepageStore {
         unreadWorks: 0,
         applications: 0,
     }
+    workScheduleListState = DataState.unknown
+    /**
+     * @type {{
+     *      startDate: any,
+     *      endDate: any,
+     *      content: any,
+     *      location: any,
+     * }[]}
+     */
+    workScheduleList = []
 
     constructor() {
         makeObservable(this, {
             counterState: observable,
             counter: observable,
+            workScheduleList: observable,
             getCounter: action,
+            getWorkScheduleList: action,
         })
     }
 
@@ -37,5 +49,15 @@ export default class HomepageStore {
         }
 
         this.counterState = DataState.error;
+    }
+
+    async getWorkScheduleList({ bearerToken, fromDate, toDate }) {
+        this.workScheduleListState = DataState.loading;
+        const data = await this.repository.getWorkScheduleList({ bearerToken, fromDate, toDate });
+        if (data !== null) {
+            this.workScheduleListState = DataState.success;
+            this.workScheduleList = data;
+            return;
+        }
     }
 }
