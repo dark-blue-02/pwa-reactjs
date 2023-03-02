@@ -589,6 +589,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .flex {
   display: flex;
 }

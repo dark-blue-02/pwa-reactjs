@@ -7,11 +7,12 @@ export const counterApi = {
     }),
     async getCounter({ bearerToken }) {
         const response = await axios.get(
-            `${this._instance.getUri()}/sidemenu_counter`,
+            `${this._instance.getUri()}/sidemenu_counter` +
+            `?type=WORK&type=PROPOSAL&type=INTERNAL_MESSAGE`,
             {
-                params: {
-                    type: ["WORK", "PROPOSAL", "INTERNAL_MESSAGE"],
-                },
+                // params: {
+                //     type: ["WORK", "PROPOSAL", "INTERNAL_MESSAGE"],
+                // },
                 headers: {
                     "Authorization": bearerToken,
                 },
