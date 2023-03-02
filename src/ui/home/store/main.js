@@ -22,16 +22,24 @@ export default class HomepageStore {
      * }[]}
      */
     workScheduleList = []
+    selectedDayOfWeek = 1
 
     constructor() {
         makeObservable(this, {
             counterState: observable,
             counter: observable,
             workScheduleList: observable,
+            selectedDayOfWeek: observable,
             getCounter: action,
             getWorkScheduleList: action,
+            selectDayOfWeek: action,
         })
     }
+
+    /**
+     * @param {number} index
+     */
+    selectDayOfWeek(index) { this.selectedDayOfWeek = index }
 
     async getCounter({ bearerToken }) {
         this.counterState = DataState.loading;
