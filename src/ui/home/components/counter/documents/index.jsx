@@ -6,8 +6,8 @@ import HomepageStore from "../../../store/main";
 
 
 export default function DocumentCounter() {
-    const today = new Date();
-    const store = useContext(HomepageContext);
+    const today = new Date()
+    const store = useContext(HomepageContext)
 
     return <div>
         <p>{today.getDay() < 7 ? `Thứ ${today.getDay() + 1}` : "Chủ nhật"}</p>
