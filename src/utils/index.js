@@ -1,3 +1,4 @@
-import delay from "./timer/delay";
+export { DataState } from "./state/data_state";
 
-export {delay}
+export { default as delay } from "./timer/delay";
+

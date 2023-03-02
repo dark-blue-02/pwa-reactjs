@@ -1,3 +1,3 @@
-import { authenticationRepository } from "./auth_repo";
+export { homeRepository } from "./home_repo";
 
-export { authenticationRepository }
+export { authenticationRepository } from "./auth_repo";
