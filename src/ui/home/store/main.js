@@ -16,7 +16,7 @@ export default class HomepageStore {
     /**
      * @type {{
      *      startDate: any,
-     *      endDate: any,
+     *      endDate: any | null,
      *      content: any,
      *      location: any,
      * }[]}

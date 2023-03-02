@@ -37,6 +37,26 @@ export default class DateTime {
         return new Date(date.getTime() - this.#hour * hours)
     }
 
+    static get firstDayOfWeek() {
+        const today = new Date();
+        const todayDayOfWeek = today.getDay();
+        const first = this.subtractDays({ date: today, days: todayDayOfWeek - 1 })
+        const getMonth = first.getMonth() + 1
+        const date = first.getDate() < 10 ? `0${first.getDate()}` : first.getDate()
+        const month = getMonth < 10 ? `0${getMonth}` : getMonth
+        return `${first.getFullYear()}-${month}-${date}`
+    }
+
+    static get lastDayOfWeek() {
+        const today = new Date();
+        const todayDayOfWeek = today.getDay();
+        const last = this.addDays({ date: today, days: 7 - todayDayOfWeek })
+        const getMonth = last.getMonth() + 1
+        const date = last.getDate() < 10 ? `0${last.getDate()}` : last.getDate()
+        const month = getMonth < 10 ? `0${getMonth}` : getMonth
+        return `${last.getFullYear()}-${month}-${date}`
+    }
+
     /**
      * @returns dates of current week.
      */
@@ -56,4 +76,14 @@ export default class DateTime {
 
         return [...prevDates, today.getDate(), ...nextDates]
     }
+
+    /**
+    * @param {{date: Date}} obj
+    */
+    static getTimeOfDay({ date }) {
+        const hour = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()
+        const minute = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+        return `${hour}:${minute}`
+    }
+
 }

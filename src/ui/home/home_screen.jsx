@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useMemo } from "react";
 import { Components } from "./components";
 import HomepageStore from "./store/main";
-import { bearerToken } from "../../utils";
+import { DateTime, bearerToken } from "../../utils";
 
 export const HomepageContext = createContext(new HomepageStore());
 
@@ -14,8 +14,8 @@ export default function HomeScreen() {
             store.getCounter({ bearerToken: bearerToken })
             store.getWorkScheduleList({
                 bearerToken: bearerToken,
-                fromDate: '2023-01-30',
-                toDate: '2023-02-10'
+                fromDate: DateTime.firstDayOfWeek,
+                toDate: DateTime.lastDayOfWeek,
             })
         },
         [store],
