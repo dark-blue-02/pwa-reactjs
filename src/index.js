@@ -4,7 +4,7 @@ import './index.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
-import { mainRouter } from './ui/routers/main_router';
+import { mainRouter } from './ui/navigation/routers/main_router';
 
 
 

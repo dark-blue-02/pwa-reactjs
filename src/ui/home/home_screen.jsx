@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useMemo } from "react";
 import { Components } from "./components";
 import HomepageStore from "./store/main";
 import { DateTime, bearerToken } from "../../utils";
+import MainNavbar from "../app/navbar";
 
 export const HomepageContext = createContext(new HomepageStore());
 
@@ -27,6 +28,7 @@ export default function HomeScreen() {
             {components.documentCounter}
             {components.taskCounter}
             {components.workSchedule}
+            <MainNavbar />
         </div>
     </HomepageContext.Provider>
 }
