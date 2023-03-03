@@ -1,4 +1,4 @@
-export const tokenLocalStorage = {
+export const userLocalStorage = {
     _username: "username",
     _password: "password",
     _token: "token",
@@ -35,5 +35,12 @@ export const tokenLocalStorage = {
         localStorage.removeItem(this._password)
         localStorage.removeItem(this._token)
         localStorage.removeItem(this._expiredDate)
-    }
+    },
+
+    makeTokenExpired() {
+        localStorage.setItem(
+            this._expiredDate,
+            new Date().getMilliseconds().toString()
+        )
+    },
 }

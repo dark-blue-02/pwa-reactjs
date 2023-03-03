@@ -1,4 +1,4 @@
-import { authenticationApi, tokenLocalStorage } from "../data";
+import { authenticationApi, userLocalStorage } from "../data";
 import { DateTime } from "../utils";
 
 export const authenticationRepository = {
@@ -7,7 +7,7 @@ export const authenticationRepository = {
         try {
             const data = await this.api.getAuthTokens(username, password);
             console.log(`Bearer token: ${data}`);
-            tokenLocalStorage.saveToken(
+            userLocalStorage.saveToken(
                 username,
                 password,
                 data.access_token,

@@ -1,15 +1,15 @@
 import { DateTime, Result } from "..";
-import { tokenLocalStorage } from "../../data";
+import { userLocalStorage } from "../../data";
 import { authenticationRepository } from "../../repository";
 
-export const savedBearerToken = `Bearer ${tokenLocalStorage.getToken().token}`
+export const savedBearerToken = `Bearer ${userLocalStorage.getToken().token}`
 
 export function isTokenExpired() {
-    const token = tokenLocalStorage.getToken().token
+    const token = userLocalStorage.getToken().token
     if (token == null) {
         return true
     }
-    const expiredDate = new Date(Number(tokenLocalStorage.getToken().expiredDate))
+    const expiredDate = new Date(Number(userLocalStorage.getToken().expiredDate))
     if (DateTime.compare(
         new Date(),
         DateTime.subtractHours({ date: expiredDate, hours: 1 }))
@@ -21,7 +21,7 @@ export function isTokenExpired() {
 
 export async function refreshTokenIfExpired() {
     if (isTokenExpired()) {
-        const currentUserInfo = tokenLocalStorage.getUserInfo()
+        const currentUserInfo = userLocalStorage.getUserInfo()
         const response = await authenticationRepository.getAuthTokens({
             username: currentUserInfo.username,
             password: currentUserInfo.password,
@@ -31,7 +31,7 @@ export async function refreshTokenIfExpired() {
         }
 
         if (currentUserInfo.username != null && currentUserInfo.password != null)
-            tokenLocalStorage.saveToken(currentUserInfo.username,
+            userLocalStorage.saveToken(currentUserInfo.username,
                 currentUserInfo.password,
                 response.bearerToken,
                 DateTime

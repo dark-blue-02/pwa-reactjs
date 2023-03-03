@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Components } from "./components";
-import { tokenLocalStorage } from "../../data";
+import { userLocalStorage } from "../../data";
 import { useNavigate } from "react-router-dom";
 import { routes } from "../navigation/routers/main_router";
 
@@ -20,11 +20,11 @@ export default function LoginScreen() {
             <div className=" h-12" />
             {components.form}
         </div>
-        <div></div>
+        <div />
     </div>
 }
 
 function isUserHadLoggedIn() {
-    const userInfo = tokenLocalStorage.getUserInfo()
+    const userInfo = userLocalStorage.getUserInfo()
     return userInfo.username != null && userInfo.password != null
 }
