@@ -104,4 +104,15 @@ export default class DateTime {
         return `${day}${separator}${month}${separator}${year}`
     }
 
+    /**
+     * @param {Date} date1
+     * @param {Date} date2
+     * @returns 1 if date1 is after date2, -1 if date1 is before date2, 0 if equals
+     */
+    static compare(date1, date2) {
+        const time1 = date1.getMilliseconds()
+        const time2 = date2.getMilliseconds()
+        return time1 > time2 ? 1 : time1 < time2 ? -1 : 0
+    }
+
 }

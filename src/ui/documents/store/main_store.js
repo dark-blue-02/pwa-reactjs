@@ -45,7 +45,10 @@ export default class DocumentStore {
         if (data !== null) {
             this.incomingDocListState = DataState.success
             this.incomingDocList = data
+            return
         }
+
+        this.incomingDocListState = DataState.error
     }
 
     /**

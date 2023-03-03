@@ -67,5 +67,7 @@ export default class HomepageStore {
             this.workScheduleList = data
             return
         }
+
+        this.workScheduleListState = DataState.error
     }
 }

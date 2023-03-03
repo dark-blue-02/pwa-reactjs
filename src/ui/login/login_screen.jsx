@@ -1,10 +1,7 @@
 import React from "react"
 import { Components } from "./components";
-import { tokenLocalStorage } from "../../data";
 
 export default function LoginScreen() {
-    console.log(tokenLocalStorage.getToken());
-
     const components = Components;
 
     // observer(() => <p>{loginStore.bearerToken}</p>)

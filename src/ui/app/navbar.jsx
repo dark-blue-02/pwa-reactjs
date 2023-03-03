@@ -18,6 +18,9 @@ export default function MainNavbar() {
                 <Link to={routes.document}>Công việc</Link>
             </div>
             <div className="bg-violet-400 mx-3 px-2">
+                <Link to={routes.document}>Khác</Link>
+            </div>
+            <div className="bg-violet-400 mx-3 px-2">
                 <Link to={routes.login}>Đăng xuất</Link>
             </div>
         </nav>

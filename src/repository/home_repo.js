@@ -1,5 +1,5 @@
 import { counterApi, workScheduleApi } from "../data";
-import { savedBearerToken } from "../utils";
+import { Result, refreshTokenIfExpired, savedBearerToken } from "../utils";
 
 export const homeRepository = {
     _counterApi: counterApi,
@@ -21,6 +21,11 @@ export const homeRepository = {
     },
 
     async getWorkScheduleList({ fromDate, toDate }) {
+        const refreshTokenResult = await refreshTokenIfExpired()
+        if (refreshTokenResult === Result.failed) {
+            return null;
+        }
+
         try {
             const data = await this._workScheduleApi.getWorkScheduleList({
                 bearerToken: savedBearerToken,

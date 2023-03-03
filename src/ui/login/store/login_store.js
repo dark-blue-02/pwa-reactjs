@@ -1,6 +1,5 @@
 import { authenticationRepository } from "../../../repository";
 import { makeObservable, observable, action } from "mobx"
-import { delay } from "../../../utils";
 
 export default class LoginStore {
     repository = authenticationRepository
@@ -24,7 +23,6 @@ export default class LoginStore {
     async getToken(username, password) {
         this.loginState = 'loading'
         const token = await this.repository.getAuthTokens({ username, password })
-        await delay(1000);
         if (token?.bearerToken != null) {
             this.loginState = 'success'
             this.bearerToken = token.bearerToken
