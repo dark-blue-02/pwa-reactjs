@@ -1,3 +1,4 @@
+export { internalDocApi } from "./api/internal_doc_api"
 export { workScheduleApi } from "./api/work_schedule_api"
 export { tokenLocalStorage } from "./storage/local_storage"
 export { authenticationApi } from "./api/auth_api"

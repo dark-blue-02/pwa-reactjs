@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useMemo } from "react";
 import { Components } from "./components";
 import HomepageStore from "./store/main";
-import { DateTime, bearerToken } from "../../utils";
+import { DateTime } from "../../utils";
 import MainNavbar from "../app/navbar";
 
 export const HomepageContext = createContext(new HomepageStore());
@@ -12,9 +12,8 @@ export default function HomeScreen() {
     const store = useMemo(() => new HomepageStore(), [])
     useEffect(
         () => {
-            store.getCounter({ bearerToken: bearerToken })
+            store.getCounter()
             store.getWorkScheduleList({
-                bearerToken: bearerToken,
                 fromDate: DateTime.firstDayOfWeek,
                 toDate: DateTime.lastDayOfWeek,
             })

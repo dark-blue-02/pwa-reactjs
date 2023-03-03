@@ -53,9 +53,11 @@ const ListView = observer(
                             ? DateTime.getTimeOfDay({ date: new Date(Date.parse(item.endDate)) })
                             : "?";
 
-                        return <div className="border rounded-lg border-blue-400 my-2" key={index}>
+                        return <div className="border rounded-lg border-blue-400 my-2 mx-2 px-2 py-2" key={index}>
                             <p>{`${startTime} - ${endTime}`}</p>
+                            <p>{"Nội dung:"}</p>
                             <p>{convert(item.content)}</p>
+                            <p>{"Địa điểm:"}</p>
                             <p>{convert(item.location)}</p>
                         </div>;
                     })}

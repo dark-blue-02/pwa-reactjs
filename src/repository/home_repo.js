@@ -1,11 +1,12 @@
 import { counterApi, workScheduleApi } from "../data";
+import { savedBearerToken } from "../utils";
 
 export const homeRepository = {
     _counterApi: counterApi,
     _workScheduleApi: workScheduleApi,
-    async getCounter({ bearerToken }) {
+    async getCounter() {
         try {
-            const data = await this._counterApi.getCounter({ bearerToken });
+            const data = await this._counterApi.getCounter({ bearerToken: savedBearerToken });
             return {
                 unreadIncomingDocs: data.unread_incoming,
                 unreadOutgoingDocs: data.unread_outgoing,
@@ -19,10 +20,10 @@ export const homeRepository = {
         }
     },
 
-    async getWorkScheduleList({ bearerToken, fromDate, toDate }) {
+    async getWorkScheduleList({ fromDate, toDate }) {
         try {
             const data = await this._workScheduleApi.getWorkScheduleList({
-                bearerToken: bearerToken,
+                bearerToken: savedBearerToken,
                 fromDate: fromDate,
                 toDate: toDate,
             })
