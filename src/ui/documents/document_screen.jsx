@@ -4,14 +4,14 @@ import DocumentStore from "./store/main_store";
 import { Components } from "./components";
 
 export const DocumentScreenContext = createContext({
-    store: new DocumentStore(),
+    mainStore: new DocumentStore(),
 })
 
 export default function DocumentScreen() {
     const components = Components
     const store = new DocumentStore()
 
-    return <DocumentScreenContext.Provider value={{ store: store }}>
+    return <DocumentScreenContext.Provider value={{ mainStore: store }}>
         <div className="flex flex-col">
             {components.header}
             {components.table}

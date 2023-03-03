@@ -10,7 +10,7 @@ export const internalDocApi = {
      */
     async getIncomingDocs({ pageIndex, size, bearerToken }) {
         const response = await axios.get(
-            `${this._instance.getUri()}/incoming`,
+            `${this._instance.getUri()}/incomingv2`,
             {
                 params: {
                     page: pageIndex,

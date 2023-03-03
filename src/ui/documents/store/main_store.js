@@ -5,6 +5,7 @@ import { makeObservable, observable, action } from "mobx"
 export default class DocumentStore {
     repository = internalDocRepository
     pageSize = 10
+    pageIndex = 0
     incomingDocListState = DataState.unknown
     incomingDocList = {
         totalCount: 0,
@@ -29,7 +30,9 @@ export default class DocumentStore {
         makeObservable(this, {
             incomingDocListState: observable,
             incomingDocList: observable,
+            pageIndex: observable,
             getIncomingDocList: action,
+            changePageIndex: action,
         })
     }
 
@@ -43,6 +46,13 @@ export default class DocumentStore {
             this.incomingDocListState = DataState.success
             this.incomingDocList = data
         }
+    }
 
+    /**
+     * @param {number} index
+     */
+    changePageIndex(index) {
+        this.pageIndex = index
+        this.getIncomingDocList({ pageIndex: index })
     }
 }

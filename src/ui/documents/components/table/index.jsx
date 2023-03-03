@@ -7,7 +7,7 @@ import { observer } from "mobx-react-lite";
 import DocumentStore from "../../store/main_store";
 
 export default function Table() {
-    const store = useContext(DocumentScreenContext).store
+    const store = useContext(DocumentScreenContext).mainStore
 
     useEffect(
         () => { store.getIncomingDocList({ pageIndex: 0 }) },
@@ -37,14 +37,14 @@ const Rows = observer(
                             new Date(doc.incomingDate),
                             "/"),
                         doc.dateIssued == null
-                            ? "Không có"
+                            ? "-"
                             : DateTime.formatDate(
                                 new Date(doc.dateIssued),
                                 "/"),
                         doc.documentStatus,
                         doc.title,
                         doc.authorityIssuedName,
-                        doc.handler ?? "Không có",
+                        doc.handler ?? "-",
                     ]} />
                 })
             }
