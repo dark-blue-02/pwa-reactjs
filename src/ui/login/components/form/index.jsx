@@ -5,6 +5,7 @@ import { Input, InputAdornment } from "@mui/material";
 import LoginStore from "../../store/login_store";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
+import { routes } from "../../../navigation/routers/main_router";
 
 export default function Form() {
     const loginStore = useMemo(() => new LoginStore(), [])
@@ -13,7 +14,7 @@ export default function Form() {
     const navigate = useNavigate()
 
     function navigateToHomeScreen() {
-        navigate("/home")
+        navigate(routes.home)
     }
 
     return <div className="flex flex-col">

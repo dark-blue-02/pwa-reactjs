@@ -15,16 +15,25 @@ export const tokenLocalStorage = {
         localStorage.setItem(this._token, token);
         localStorage.setItem(this._expiredDate, expiredDate.toString());
     },
+
     getToken() {
         return {
             token: localStorage.getItem(this._token),
             expiredDate: localStorage.getItem(this._expiredDate),
         }
     },
+
     getUserInfo() {
         return {
             username: localStorage.getItem(this._username),
             password: localStorage.getItem(this._password),
         }
+    },
+
+    deleteUserInfo() {
+        localStorage.removeItem(this._username)
+        localStorage.removeItem(this._password)
+        localStorage.removeItem(this._token)
+        localStorage.removeItem(this._expiredDate)
     }
 }

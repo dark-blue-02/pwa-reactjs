@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { routes } from "../navigation/routers/main_router";
+import { tokenLocalStorage } from "../../data";
 
 export default function MainNavbar() {
     return <div>
@@ -20,7 +21,8 @@ export default function MainNavbar() {
             <div className="bg-violet-400 mx-3 px-2">
                 <Link to={routes.document}>Khác</Link>
             </div>
-            <div className="bg-violet-400 mx-3 px-2">
+            <div className="bg-violet-400 mx-3 px-2"
+                onClick={() => tokenLocalStorage.deleteUserInfo()}>
                 <Link to={routes.login}>Đăng xuất</Link>
             </div>
         </nav>
