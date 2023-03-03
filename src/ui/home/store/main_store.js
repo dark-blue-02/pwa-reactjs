@@ -42,10 +42,10 @@ export default class HomepageStore {
     selectDayOfWeek(index) { this.selectedDayOfWeek = index }
 
     async getCounter() {
-        this.counterState = DataState.loading;
-        const data = await this.repository.getCounter();
+        this.counterState = DataState.loading
+        const data = await this.repository.getCounter()
         if (data !== null) {
-            this.counterState = DataState.success;
+            this.counterState = DataState.success
             this.counter = {
                 unreadIncomingDocs: data.unreadIncomingDocs,
                 unreadOutgoingDocs: data.unreadOutgoingDocs,
@@ -56,16 +56,16 @@ export default class HomepageStore {
             return;
         }
 
-        this.counterState = DataState.error;
+        this.counterState = DataState.error
     }
 
     async getWorkScheduleList({ fromDate, toDate }) {
-        this.workScheduleListState = DataState.loading;
-        const data = await this.repository.getWorkScheduleList({ fromDate, toDate });
+        this.workScheduleListState = DataState.loading
+        const data = await this.repository.getWorkScheduleList({ fromDate, toDate })
         if (data !== null) {
-            this.workScheduleListState = DataState.success;
-            this.workScheduleList = data;
-            return;
+            this.workScheduleListState = DataState.success
+            this.workScheduleList = data
+            return
         }
     }
 }

@@ -5,6 +5,9 @@ export const internalDocApi = {
         baseURL: "https://stg.vimc.fafu.com.vn/api/v1/internal-documents",
         timeout: 5000,
     }),
+    /**
+     * @returns {Promise<{total_count: number, data: any[]}>}
+     */
     async getIncomingDocs({ pageIndex, size, bearerToken }) {
         const response = await axios.get(
             `${this._instance.getUri()}/incoming`,

@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import { HomepageContext } from "../../home_screen";
 import { convert } from "html-to-text";
 // eslint-disable-next-line no-unused-vars
-import HomepageStore from "../../store/main";
+import HomepageStore from "../../store/main_store";
 
 export default function WorkSchedule() {
     const currentWeek = DateTime.currentWeek;

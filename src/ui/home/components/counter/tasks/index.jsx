@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { HomepageContext } from "../../../home_screen";
 import { observer } from "mobx-react-lite";
 // eslint-disable-next-line no-unused-vars
-import HomepageStore from "../../../store/main";
+import HomepageStore from "../../../store/main_store";
 
 export default function TaskCounter() {
     const store = useContext(HomepageContext);

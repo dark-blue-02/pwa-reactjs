@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo } from "react";
 import { Components } from "./components";
-import HomepageStore from "./store/main";
+import HomepageStore from "./store/main_store";
 import { DateTime } from "../../utils";
 import MainNavbar from "../app/navbar";
 
