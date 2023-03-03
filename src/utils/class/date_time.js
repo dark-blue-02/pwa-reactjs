@@ -1,3 +1,5 @@
+import TwoDigits from "./two_digit"
+
 export default class DateTime {
     static #hour = 3600 * 1000
     static #day = this.#hour * 24
@@ -8,6 +10,14 @@ export default class DateTime {
      * @returns today in milliseconds (epoch time).
      */
     static rightNow() { return Date.now() }
+
+    /**
+     * @param {Date} date
+     */
+    static getMonthAsString(date) {
+        const getMonth = date.getMonth() + 1
+        return TwoDigits.numToTwoDigits(getMonth)
+    }
 
     /**
      * @param {{date: Date, days: number}} obj
@@ -41,20 +51,16 @@ export default class DateTime {
         const today = new Date();
         const todayDayOfWeek = today.getDay();
         const first = this.subtractDays({ date: today, days: todayDayOfWeek - 1 })
-        const getMonth = first.getMonth() + 1
-        const date = first.getDate() < 10 ? `0${first.getDate()}` : first.getDate()
-        const month = getMonth < 10 ? `0${getMonth}` : getMonth
-        return `${first.getFullYear()}-${month}-${date}`
+        return `${first.getFullYear()}-${this.getMonthAsString(first)}-` +
+            `${TwoDigits.numToTwoDigits(first.getDate())}`
     }
 
     static get lastDayOfWeek() {
         const today = new Date();
         const todayDayOfWeek = today.getDay();
         const last = this.addDays({ date: today, days: 7 - todayDayOfWeek })
-        const getMonth = last.getMonth() + 1
-        const date = last.getDate() < 10 ? `0${last.getDate()}` : last.getDate()
-        const month = getMonth < 10 ? `0${getMonth}` : getMonth
-        return `${last.getFullYear()}-${month}-${date}`
+        return `${last.getFullYear()}-${this.getMonthAsString(last)}-` +
+            `${TwoDigits.numToTwoDigits(last.getDate())}`
     }
 
     /**
@@ -84,6 +90,18 @@ export default class DateTime {
         const hour = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()
         const minute = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
         return `${hour}:${minute}`
+    }
+
+    /**
+     * @param {Date} date
+     * @param {string} separator
+     * @return dd-MM-yyyy
+     */
+    static formatDate(date, separator) {
+        const day = TwoDigits.numToTwoDigits(date.getDate())
+        const month = TwoDigits.numToTwoDigits(date.getMonth() + 1)
+        const year = date.getFullYear()
+        return `${day}${separator}${month}${separator}${year}`
     }
 
 }
