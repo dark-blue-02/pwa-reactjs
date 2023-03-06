@@ -22,7 +22,7 @@ export default function HomeScreen() {
     )
 
     return <HomepageContext.Provider value={store}>
-        <div className=" flex flex-col">
+        <div className=" flex flex-col px-8 pt-2">
             {components.header}
             {components.documentCounter}
             {components.taskCounter}

@@ -1,8 +1,10 @@
 import React, { useMemo, useState } from "react";
 // @ts-ignore
-import userIcon from "../../../../assets/svg/user.svg"
+import userIcon from "../../../../assets/svg/user.svg";
 // @ts-ignore
-import passwordIcon from "../../../../assets/svg/password.svg"
+import passwordIcon from "../../../../assets/svg/password.svg";
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import { Input, InputAdornment } from "@mui/material";
 import LoginStore from "../../store/login_store";
 import { useNavigate } from "react-router-dom";
@@ -21,17 +23,19 @@ export default function Form() {
     }
 
     return <div className="flex flex-col">
-        <Field
+        <InputField
             title="Tài khoản"
             icon={userIcon}
             hint="Tên đăng nhập hoặc email"
+            isPassword={false}
             onChange={(/** @type {string} */ text) => setUsername(text)}
         />
         <div className="h-3" />
-        <Field
+        <InputField
             title="Mật khẩu"
             icon={passwordIcon}
             hint="Mật khẩu"
+            isPassword={true}
             onChange={(/** @type {string} */ text) => setPassword(text)}
         />
         <div className="h-4" />
@@ -49,7 +53,9 @@ export default function Form() {
     </div>
 }
 
-function Field({ title, icon, hint, onChange }) {
+function InputField({ title, icon, hint, onChange, isPassword }) {
+    const [hideText, setHideText] = useState(true)
+
     return (
         <div className="flex flex-col items-start">
             <p className=" text-base font-semibold tracking-[-0.4px] leading-[22px]">{title}</p>
@@ -57,6 +63,7 @@ function Field({ title, icon, hint, onChange }) {
             <Input
                 className="text-base leading-[22px] tracking-[-0.6px] bg-F8F8F8 rounded-lg p-4"
                 size="small"
+                type={isPassword && hideText ? "password" : "text"}
                 fullWidth={true}
                 placeholder={hint}
                 disableUnderline={true}
@@ -65,7 +72,20 @@ function Field({ title, icon, hint, onChange }) {
                     <InputAdornment position="start">
                         <img src={icon} alt="icon" />
                     </InputAdornment>
-                } />
+                }
+                endAdornment={
+                    isPassword && <div onClick={() => setHideText(!hideText)}>
+                        <InputAdornment position="end">
+                            {
+                                hideText
+                                    ? <VisibilityRoundedIcon />
+                                    : <VisibilityOffRoundedIcon />
+
+                            }
+                        </InputAdornment>
+                    </div>
+                }
+            />
         </div>
     );
 }
