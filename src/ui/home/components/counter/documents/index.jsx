@@ -1,31 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { HomepageContext } from "../../../home_screen";
-import { observer } from "mobx-react-lite";
-// eslint-disable-next-line no-unused-vars
-import HomepageStore from "../../../store/main_store";
+import { DetailDocCount } from "./detail";
+import { TotalDocCount } from "./total";
 
 
 export default function DocumentCounter() {
     const today = new Date()
     const store = useContext(HomepageContext)
 
-    return <div>
-        <p>{today.getDay() < 7 ? `Thứ ${today.getDay() + 1}` : "Chủ nhật"}</p>
-        <p>{`${today.getDate()} tháng ${today.getMonth()}, ${today.getFullYear()}`}</p>
-        <div className="h-4" />
+    return <div className=" bg-primary h-[186px] rounded-lg pl-5 py-4 pr-4">
+        <SmallText>{today.getDay() < 7 ? `Thứ ${today.getDay() + 1}` : "Chủ nhật"}</SmallText>
+        <SmallText>{`${today.getDate()} tháng ${today.getMonth()}, ${today.getFullYear()}`}</SmallText>
+        <div className="h-3" />
         <Counter store={store} />
-        <div className="h-4" />
+        <div className="h-3" />
     </div>
 }
 
-const Counter = observer(
-    /**
-     * @param {{store: HomepageStore}} obj 
-     */
-    ({ store }) =>
-        <div>
-            <p>{`${store.counter.unreadIncomingDocs} văn bản đi`}</p>
-            <p>{`${store.counter.unreadOutgoingDocs} văn bản đến`}</p>
-            <p>{`${store.counter.unreadWorks} công việc`}</p>
-        </div>
-)
+function SmallText({ children }) {
+    return <p className="text-xs font-medium text-white leading-5">{children}</p>
+}
+
+function Counter({ store }) {
+    const [showTotal, setShowTotal] = useState(true)
+
+    return <div onClick={() => setShowTotal(!showTotal)}>
+        {
+            showTotal
+                ? <TotalDocCount store={store} />
+                : <DetailDocCount store={store} />
+        }
+    </div>
+}

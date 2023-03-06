@@ -24,8 +24,11 @@ export default function HomeScreen() {
     return <HomepageContext.Provider value={store}>
         <div className=" flex flex-col px-8 pt-2">
             {components.header}
+            <div className="h-4" />
             {components.documentCounter}
+            <div className="h-4" />
             {components.taskCounter}
+            <div className="h-4" />
             {components.workSchedule}
             <MainNavbar />
         </div>
