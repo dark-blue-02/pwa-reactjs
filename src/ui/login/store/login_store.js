@@ -32,4 +32,7 @@ export default class LoginStore {
         this.loginState = DataState.error
     }
 
+    resetDataState() {
+        this.loginState = DataState.unknown
+    }
 }
