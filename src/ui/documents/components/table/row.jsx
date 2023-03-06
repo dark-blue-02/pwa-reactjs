@@ -9,7 +9,8 @@ export default function TableRow({ cells }) {
     return <div className="flex">
         {
             cells.length > 0 && cells.map((cell, index) =>
-                <Cell content={cell}
+                <Cell key={index}
+                    content={cell}
                     index={index}
                     width={index <= cellWidths.length - 1 ? cellWidths[index] : 50}
                 />

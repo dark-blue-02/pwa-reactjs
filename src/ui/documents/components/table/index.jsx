@@ -10,7 +10,9 @@ export default function Table() {
     const store = useContext(DocumentScreenContext).mainStore
 
     useEffect(
-        () => { store.getIncomingDocList({ pageIndex: 0 }) },
+        () => {
+            store.getIncomingDocList({ pageIndex: 0 })
+        },
         [store]
     )
 

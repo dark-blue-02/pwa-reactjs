@@ -110,8 +110,8 @@ export default class DateTime {
      * @returns 1 if date1 is after date2, -1 if date1 is before date2, 0 if equals
      */
     static compare(date1, date2) {
-        const time1 = date1.getMilliseconds()
-        const time2 = date2.getMilliseconds()
+        const time1 = date1.getTime()
+        const time2 = date2.getTime()
         return time1 > time2 ? 1 : time1 < time2 ? -1 : 0
     }
 

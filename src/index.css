@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+html {
+  font-family: 'Svn-Gilroy';
+}
+
 @font-face {
   font-family: 'Svn-Gilroy';
   font-weight: 400;

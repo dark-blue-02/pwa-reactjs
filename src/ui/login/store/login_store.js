@@ -1,18 +1,17 @@
 import { authenticationRepository } from "../../../repository";
 import { makeObservable, observable, action } from "mobx"
+import { DataState, delay } from "../../../utils";
 
 export default class LoginStore {
     repository = authenticationRepository
     bearerToken = ""
-    /**
-     * @type {'loading' | 'error' | 'success' | 'unknown'}
-     */
-    loginState = 'unknown'
+    loginState = DataState.unknown
 
     constructor() {
         makeObservable(this, {
+            loginState: observable,
             bearerToken: observable,
-            getToken: action,
+            getTokenThenSaveIt: action,
         })
     }
 
@@ -20,16 +19,17 @@ export default class LoginStore {
      * @param {string} [username]
      * @param {string} [password]
      */
-    async getToken(username, password) {
-        this.loginState = 'loading'
-        const token = await this.repository.getAuthTokens({ username, password })
+    async getTokenThenSaveIt(username, password) {
+        this.loginState = DataState.loading
+        await delay(500)
+        const token = await this.repository.getAuthTokensThenSaveIt({ username, password })
         if (token?.bearerToken != null) {
-            this.loginState = 'success'
+            this.loginState = DataState.success
             this.bearerToken = token.bearerToken
             return
         }
 
-        this.loginState = 'error'
+        this.loginState = DataState.error
     }
 
 }

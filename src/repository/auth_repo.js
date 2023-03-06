@@ -3,17 +3,16 @@ import { DateTime } from "../utils";
 
 export const authenticationRepository = {
     api: authenticationApi,
-    async getAuthTokens({ username, password }) {
+    async getAuthTokensThenSaveIt({ username, password }) {
         try {
             const data = await this.api.getAuthTokens(username, password);
-            console.log(`Bearer token: ${data}`);
             userLocalStorage.saveToken(
                 username,
                 password,
                 data.access_token,
                 DateTime
                     .addHours({ date: new Date(), hours: data.expires_in / 3600 })
-                    .getMilliseconds(),
+                    .getTime(),
             );
             return { bearerToken: data.access_token, expiredIn: data.expires_in }
         } catch (error) {
