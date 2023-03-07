@@ -15,6 +15,9 @@ module.exports = {
         'hint': '#C6C6C6',
         'F8F8F8': '#F8F8F8',
         'blue': '#1089FF',
+        'dark-blue': '#0073C7',
+        'red': '#FF1010',
+        'dark-red': '#C70000',
         'icon-normal': '#A2A2A2',
       }
     },
