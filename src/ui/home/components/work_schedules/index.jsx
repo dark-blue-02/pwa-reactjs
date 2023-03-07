@@ -1,17 +1,19 @@
+import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { DateTime } from "../../../../utils";
-import { observer } from "mobx-react-lite";
 import { HomepageContext } from "../../home_screen";
-import { convert } from "html-to-text";
+import { ListView } from "./schedule_list";
 // eslint-disable-next-line no-unused-vars
 import HomepageStore from "../../store/main_store";
+import { color } from "../../../../utils/resource/color";
 
 export default function WorkSchedule() {
-    const currentWeek = DateTime.currentWeek;
     const store = useContext(HomepageContext);
 
     return <div className="mt-4">
-        <WeekdayList currentWeek={currentWeek} store={store} />
+        <p className="text-black text-lg font-semibold leading-[18.9px]">Lịch cơ quan</p>
+        <div className=" h-4" />
+        <WeekdayList store={store} />
         <div className=" h-4" />
         <ListView store={store} />
     </div>
@@ -19,48 +21,37 @@ export default function WorkSchedule() {
 
 const WeekdayList = observer(
     /**
-     * @param {{currentWeek: number[], store: HomepageStore}} obj
+     * @param {{store: HomepageStore}} obj
      */
-    ({ currentWeek, store }) => {
-        return <>
+    ({ store }) => {
+        const currentWeek = DateTime.currentWeek;
+        return <div className="flex overflow-x-scroll">
             {currentWeek.map((day, index) => {
-                return <button
-                    className="border rounded-lg border-blue-400 mx-4 w-8"
+                const isSelected = store.selectedDayOfWeek - 1 === index
+
+                return <div
+                    className="border rounded-lg min-w-[52px] mx-4 pt-5 pb-4"
+                    style={{
+                        borderColor: isSelected ? color.primary : color.F3F3F3,
+                        backgroundColor: isSelected ? color.primary : 'transparent',
+                    }}
                     key={index}
                     onClick={() => { store.selectDayOfWeek(index + 1); }}>
-                    {day}
-                </button>;
+                    <p
+                        className=" text-xs font-medium text-label text-center"
+                        style={{ color: isSelected ? 'white' : color.label }}
+                    >
+                        {index !== 6 ? `Thứ ${index + 2}` : "CN"}
+                    </p>
+                    <div className="h-3" />
+                    <p
+                        className="text-base text-label font-semibold tracking-[-0.4px] text-center"
+                        style={{ color: isSelected ? 'white' : color.label }}
+                    >
+                        {day}
+                    </p>
+                </div>;
             })}
-        </>;
-    }
-)
-
-const ListView = observer(
-    /**
-     * @param {{store: HomepageStore}} obj 
-    */
-    ({ store }) => {
-        return <>
-            {store.workScheduleList.length > 0 &&
-                store.workScheduleList
-                    .filter((item) => {
-                        const dayOfWeek = new Date(Date.parse(item.startDate)).getDay();
-                        return dayOfWeek === store.selectedDayOfWeek
-                    })
-                    .map((item, index) => {
-                        const startTime = DateTime.getTimeOfDay({ date: new Date(Date.parse(item.startDate)) });
-                        const endTime = item.endDate !== null
-                            ? DateTime.getTimeOfDay({ date: new Date(Date.parse(item.endDate)) })
-                            : "?";
-
-                        return <div className="border rounded-lg border-blue-400 my-2 mx-2 px-2 py-2" key={index}>
-                            <p>{`${startTime} - ${endTime}`}</p>
-                            <p>{"Nội dung:"}</p>
-                            <p>{convert(item.content)}</p>
-                            <p>{"Địa điểm:"}</p>
-                            <p>{convert(item.location)}</p>
-                        </div>;
-                    })}
-        </>;
+        </div>;
     }
 )

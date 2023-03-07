@@ -22,7 +22,7 @@ export default class HomepageStore {
      * }[]}
      */
     workScheduleList = []
-    selectedDayOfWeek = 1
+    selectedDayOfWeek = new Date().getDay()
 
     constructor() {
         makeObservable(this, {

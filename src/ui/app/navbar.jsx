@@ -5,7 +5,7 @@ import { userLocalStorage } from "../../data";
 
 export default function MainNavbar() {
     return <div>
-        <nav className="absolute bottom-0 left-0 right-0 bg-emerald-300 flex justify-center">
+        <nav className="fixed bottom-0 w-screen bg-emerald-300 flex justify-center">
             <div className="bg-violet-400 mx-3 px-2">
                 <Link to={routes.home}>Trang chủ</Link>
             </div>
