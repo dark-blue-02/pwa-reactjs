@@ -14,8 +14,10 @@ export default function Header() {
             </div>
         </div>
         <div className="flex-1 w-5 h-5">
-            <div className=" relative bg-red-500 rounded-full w-2 h-2  top-2 left-[13px]" />
-            <img src={notifyIcon} alt="notify" />
+            <div className=" flex justify-end relative">
+                <div className=" absolute bg-red-500 rounded-full w-2 h-2 right-0 top-0" />
+                <img src={notifyIcon} alt="notify" />
+            </div>
         </div>
     </div>
 }

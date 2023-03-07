@@ -2,18 +2,33 @@ import React, { useContext, useState } from "react";
 import { HomepageContext } from "../../../home_screen";
 import { DetailDocCount } from "./detail";
 import { TotalDocCount } from "./total";
+import drawing from "../../../../../assets/svg/wacky-drawing.svg";
+import image from "../../../../../assets/svg/planning.svg";
+import { TwoDigits } from "../../../../../utils";
 
 
 export default function DocumentCounter() {
     const today = new Date()
     const store = useContext(HomepageContext)
 
-    return <div className=" bg-primary h-[186px] rounded-lg pl-5 py-4 pr-4">
-        <SmallText>{today.getDay() < 7 ? `Thứ ${today.getDay() + 1}` : "Chủ nhật"}</SmallText>
-        <SmallText>{`${today.getDate()} tháng ${today.getMonth()}, ${today.getFullYear()}`}</SmallText>
-        <div className="h-3" />
-        <Counter store={store} />
-        <div className="h-3" />
+    return <div className=" flex justify-between relative bg-primary h-[186px] rounded-lg pl-5 py-4 pr-4">
+        <div className="flex flex-col">
+            <SmallText>
+                {today.getDay() < 7 ? `Thứ ${today.getDay() + 1}` : "Chủ nhật"}
+            </SmallText>
+            <SmallText>
+                {
+                    `${TwoDigits.numToTwoDigits(today.getDate())}` +
+                    ` tháng ${TwoDigits.numToTwoDigits(today.getMonth())},` +
+                    ` ${TwoDigits.numToTwoDigits(today.getFullYear())}`
+                }
+            </SmallText>
+            <div className="h-3" />
+            <Counter store={store} />
+            <div className="h-3" />
+            <img className=" absolute bottom-0 left-0 -z-20" src={drawing} alt="" />
+        </div>
+        <img src={image} alt="img" />
     </div>
 }
 
