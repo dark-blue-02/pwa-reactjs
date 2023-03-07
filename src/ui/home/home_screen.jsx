@@ -30,6 +30,7 @@ export default function HomeScreen() {
             {components.taskCounter}
             <div className="h-4" />
             {components.workSchedule}
+            <div className="h-[100px]" />
             <MainNavbar />
         </div>
     </HomepageContext.Provider>

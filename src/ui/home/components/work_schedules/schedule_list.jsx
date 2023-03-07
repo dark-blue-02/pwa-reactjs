@@ -50,7 +50,6 @@ export const ListView = observer(
                                 <div className="flex flex-col flex-1">
                                     <Title>{"Địa điểm:"}</Title>
                                     <div className="h-1" />
-                                    {/* <MultilineText>{item.location}</MultilineText> */}
                                     <LinkifyText>
                                         {item.location}
                                     </LinkifyText>
