@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { routes } from "../navigation/routers/main_router";
 import { userLocalStorage } from "../../data";
-import { AppBar, Tab, Tabs, Toolbar } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 
 export default function MainNavbar() {
     const navItemStyle = "text-black mx-3 px-2"
-    const indicatorStyle = " max-w-none"
 
-    const [value, setValue] = React.useState(0);
+    const navItems = document.querySelectorAll("#nav-item")
+    const [indicatorPos, setIndicatorPos] = useState({
+        left: "0",
+        width: "0",
+    })
+
+    /**
+     * @param {any} element
+     */
+    function updateIndicatorPosition(element) {
+        // setIndicatorLeft(element.offsetLeft + (element.outerWidth / 2) + "px")
+        setIndicatorPos({ left: element.offsetLeft + "px", width: element.offsetWidth })
+    }
+
+    navItems.forEach(item => {
+        item.addEventListener("click", (event) => {
+            updateIndicatorPosition(event.target)
+        })
+    })
 
     return <>
         <AppBar
@@ -16,48 +33,33 @@ export default function MainNavbar() {
             sx={{ top: 'auto', bottom: 0, backgroundColor: 'white' }}
         >
             <Toolbar className="flex justify-center">
-                {/* <div className={navItemStyle}>
+                <div
+                    id="nav-indicator"
+                    className=" absolute bottom-2 h-[3px] rounded-t-[2px] bg-primary duration-500"
+                    style={{
+                        left: indicatorPos.left,
+                        width: indicatorPos.width,
+                        display: indicatorPos.left === "0" ? 'none' : 'block',
+                    }}
+                />
+                <div id="nav-item" className={navItemStyle}>
                     <Link to={routes.home}>Trang chủ</Link>
                 </div>
-                <div className={navItemStyle}>
+                <div id="nav-item" className={navItemStyle}>
                     <Link to={routes.document}>Lịch</Link>
                 </div>
-                <div className={navItemStyle}>
+                <div id="nav-item" className={navItemStyle}>
                     <Link to={routes.document}>Văn bản</Link>
                 </div>
-                <div className={navItemStyle}>
+                <div id="nav-item" className={navItemStyle}>
                     <Link to={routes.document}>Công việc</Link>
                 </div>
-                <div className={navItemStyle}>
+                <div id="nav-item" className={navItemStyle}>
                     <Link to={routes.document}>Khác</Link>
                 </div>
-                <div className={navItemStyle} onClick={deleteUserInfo}>
+                <div id="nav-item" className={navItemStyle} onClick={deleteUserInfo}>
                     <Link to={routes.login}>Đăng xuất</Link>
-                </div> */}
-                <Tabs
-                    value={value}
-                    onChange={(_, value) => setValue(value)}
-                    classes={{ indicator: indicatorStyle }}
-                >
-                    <Link to={routes.home} className={navItemStyle}>
-                        <Tab value={0} label="Trang chủ" />
-                    </Link>
-                    <Link className={navItemStyle} to={routes.document}>
-                        <Tab value={1} label="Lịch" />
-                    </Link>
-                    <Link className={navItemStyle} to={routes.document}>
-                        <Tab value={2} label="Văn bản" />
-                    </Link>
-                    <Link className={navItemStyle} to={routes.document}>
-                        <Tab value={3} label="Công việc" />
-                    </Link>
-                    <Link to={routes.document}>
-                        <Tab className={navItemStyle} value={4} label="Khác" />
-                    </Link>
-                    <Link className={navItemStyle} to={routes.login} onClick={deleteUserInfo}>
-                        <Tab value={5} label="Đăng xuất" />
-                    </Link>
-                </Tabs>
+                </div>
             </Toolbar>
         </AppBar>
     </>
