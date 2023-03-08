@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import MainNavbar from "../app/navbar";
+import { EmptyDivBehindNavbar } from "../app/navbar";
 import DocumentStore from "./store/main_store";
 import { Components } from "./components";
 
@@ -16,7 +16,7 @@ export default function DocumentScreen() {
             {components.header}
             {components.table}
             {components.controller}
-            <MainNavbar />
+            <EmptyDivBehindNavbar />
         </div>
     </DocumentScreenContext.Provider>
 

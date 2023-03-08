@@ -63,6 +63,10 @@ export default function MainNavbar() {
     </>
 }
 
+export function EmptyDivBehindNavbar() {
+    return <div className="h-[100px]" />
+}
+
 function deleteUserInfo() {
     userLocalStorage.deleteUserInfo()
 }

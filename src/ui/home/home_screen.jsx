@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useMemo } from "react";
 import { Components } from "./components";
 import HomepageStore from "./store/main_store";
 import { DateTime } from "../../utils";
-import MainNavbar from "../app/navbar";
+import { EmptyDivBehindNavbar } from "../app/navbar";
 
 export const HomepageContext = createContext(new HomepageStore());
 
@@ -22,7 +22,7 @@ export default function HomeScreen() {
     )
 
     return <HomepageContext.Provider value={store}>
-        <div className=" flex flex-col px-8 pt-2">
+        <div className=" flex flex-col px-8 pt-2 text-start">
             {components.header}
             <div className="h-4" />
             {components.documentCounter}
@@ -30,8 +30,7 @@ export default function HomeScreen() {
             {components.taskCounter}
             <div className="h-4" />
             {components.workSchedule}
-            <div className="h-[100px]" />
-            <MainNavbar />
+            <EmptyDivBehindNavbar />
         </div>
     </HomepageContext.Provider>
 }
