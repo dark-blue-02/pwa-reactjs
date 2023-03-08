@@ -4,7 +4,7 @@ import HomepageStore from "./store/main_store";
 import { DateTime } from "../../utils";
 import { EmptyDivBehindNavbar } from "../app/navbar";
 
-export const HomepageContext = createContext(new HomepageStore());
+export const HomepageContext = createContext({ store: new HomepageStore() });
 
 export default function HomeScreen() {
     const components = Components;
@@ -21,7 +21,7 @@ export default function HomeScreen() {
         [store],
     )
 
-    return <HomepageContext.Provider value={store}>
+    return <HomepageContext.Provider value={{ store: store }}>
         <div className=" flex flex-col px-8 pt-2 text-start">
             {components.header}
             <div className="h-4" />

@@ -3,27 +3,21 @@ import React, { useContext } from "react";
 import { DateTime } from "../../../../utils";
 import { HomepageContext } from "../../home_screen";
 import { ListView } from "./schedule_list";
-// eslint-disable-next-line no-unused-vars
-import HomepageStore from "../../store/main_store";
 import { color } from "../../../../utils/resource/color";
 
 export default function WorkSchedule() {
-    const store = useContext(HomepageContext);
-
     return <div className="mt-4">
         <p className="text-black text-lg font-semibold leading-[18.9px]">Lịch cơ quan</p>
         <div className=" h-4" />
-        <WeekdayList store={store} />
+        <WeekdayList />
         <div className=" h-4" />
-        <ListView store={store} />
+        <ListView />
     </div>
 }
 
 const WeekdayList = observer(
-    /**
-     * @param {{store: HomepageStore}} obj
-     */
-    ({ store }) => {
+    () => {
+        const store = useContext(HomepageContext).store
         const currentWeek = DateTime.currentWeek;
         return <div className="flex overflow-x-scroll">
             {currentWeek.map((day, index) => {

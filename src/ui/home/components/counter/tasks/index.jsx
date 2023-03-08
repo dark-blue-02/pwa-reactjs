@@ -1,32 +1,26 @@
 import React, { useContext } from "react";
 import { HomepageContext } from "../../../home_screen";
 import { observer } from "mobx-react-lite";
-// eslint-disable-next-line no-unused-vars
-import HomepageStore from "../../../store/main_store";
 import { color } from "../../../../../utils/resource/color";
 
 export default function TaskCounter() {
-    const store = useContext(HomepageContext);
-
-    return <div>
-        <Counter store={store} />
-    </div>
+    return <>
+        <Counter />
+    </>
 }
 
 const Counter = observer(
-    /**
-     * @param {{store: HomepageStore}} obj 
-    */
-    ({ store }) =>
-        <div className="flex">
+    () => {
+        const store = useContext(HomepageContext).store
+
+        return <div className="flex">
             <Container
                 count={store.counter.overdueTasks}
                 colorCount={color.red}
                 type={"Nhiệm vụ"}
                 detail={"quá hạn"}
                 colorDetail={color.dark_red}
-                backgroundColor={color.dark_red}
-            />
+                backgroundColor={color.dark_red} />
             <div className="w-6" />
             <Container
                 count={store.counter.applications}
@@ -34,9 +28,9 @@ const Counter = observer(
                 type={"Đơn hành chính"}
                 detail={"cần giải quyết"}
                 colorDetail={color.blue}
-                backgroundColor={color.dark_blue}
-            />
-        </div>
+                backgroundColor={color.dark_blue} />
+        </div>;
+    }
 )
 
 function Container({ count, colorCount, type, detail, colorDetail, backgroundColor }) {

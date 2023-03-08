@@ -1,13 +1,11 @@
 import { observer } from "mobx-react-lite";
-import React from "react";
-// eslint-disable-next-line no-unused-vars
-import HomepageStore from "../../../store/main_store";
+import React, { useContext } from "react";
+import { HomepageContext } from "../../../home_screen";
 
 export const TotalDocCount = observer(
-    /**
-     * @param {{store: HomepageStore}} obj 
-     */
-    ({ store }) => {
+    () => {
+        const store = useContext(HomepageContext).store
+
         const total = store.counter.unreadIncomingDocs
             + store.counter.unreadOutgoingDocs
             + store.counter.unreadWorks

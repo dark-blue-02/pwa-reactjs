@@ -28,6 +28,7 @@ export default class HomepageStore {
         makeObservable(this, {
             counterState: observable,
             counter: observable,
+            workScheduleListState: observable,
             workScheduleList: observable,
             selectedDayOfWeek: observable,
             getCounter: action,

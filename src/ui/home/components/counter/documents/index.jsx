@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { HomepageContext } from "../../../home_screen";
+import React, { useState } from "react";
 import { DetailDocCount } from "./detail";
 import { TotalDocCount } from "./total";
 import drawing from "../../../../../assets/svg/wacky-drawing.svg";
@@ -9,7 +8,6 @@ import { TwoDigits } from "../../../../../utils";
 
 export default function DocumentCounter() {
     const today = new Date()
-    const store = useContext(HomepageContext)
 
     return <div className=" flex justify-between relative bg-primary h-[186px] rounded-lg pl-5 py-4 pr-4">
         <div className="flex flex-col">
@@ -24,7 +22,7 @@ export default function DocumentCounter() {
                 }
             </SmallText>
             <div className="h-3" />
-            <Counter store={store} />
+            <Counter />
             <div className="h-3" />
             <img className=" absolute bottom-0 left-0 -z-20" src={drawing} alt="" />
         </div>
@@ -36,14 +34,14 @@ function SmallText({ children }) {
     return <p className="text-xs font-medium text-white leading-5">{children}</p>
 }
 
-function Counter({ store }) {
+function Counter() {
     const [showTotal, setShowTotal] = useState(true)
 
     return <div onClick={() => setShowTotal(!showTotal)}>
         {
             showTotal
-                ? <TotalDocCount store={store} />
-                : <DetailDocCount store={store} />
+                ? <TotalDocCount />
+                : <DetailDocCount />
         }
     </div>
 }
