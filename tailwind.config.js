@@ -15,11 +15,13 @@ module.exports = {
         'hint': '#C6C6C6',
         'blue': '#1089FF',
         'dark-blue': '#0073C7',
+        'blue-grey': '#28353B',
         'red': '#FF1010',
         'dark-red': '#C70000',
         'icon-normal': '#A2A2A2',
         'F8F8F8': '#F8F8F8',
         'F3F3F3': '#F3F3F3',
+        '9F9F9F': '#9F9F9F',
       }
     },
   },
