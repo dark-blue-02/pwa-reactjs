@@ -22,6 +22,7 @@ module.exports = {
         'F8F8F8': '#F8F8F8',
         'F3F3F3': '#F3F3F3',
         '9F9F9F': '#9F9F9F',
+        'E0E0E0': '#E0E0E0',
       }
     },
   },
