@@ -8,8 +8,13 @@ export const color = {
     label_form: '#16192C',
     label: '#737373',
     hint: '#C6C6C6',
+    icon_normal: '#A2A2A2',
     F8F8F8: '#F8F8F8',
     F3F3F3: '#F3F3F3',
     '9F9F9F': '#9F9F9F',
     'E0E0E0': '#E0E0E0',
+    yellow: '#E5C30B',
+    light_yellow: '#FFF6C5',
+    brown: '#615207',
+    E0F2FF: '#E0F2FF',
 }
