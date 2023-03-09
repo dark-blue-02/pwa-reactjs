@@ -4,8 +4,7 @@ import React, { useContext } from "react";
 import { convert as convertHtmlToText } from "html-to-text";
 import { HomepageContext } from "../../home_screen";
 import { Title, TimeDisplay, MultilineText, LinkifyText } from "./text";
-import { CircularProgress } from "@mui/material";
-import { ErrorView, NoDataView } from "../../../common/data_state";
+import { ErrorView, LoadingView, NoDataView } from "../../../common/data_state";
 
 export const ListView = observer(
     () => {
@@ -23,7 +22,7 @@ export const ListView = observer(
         return <>
             {
                 store.workScheduleListState === DataState.loading
-                    ? <CircularProgress />
+                    ? <LoadingView />
                     : store.workScheduleListState === DataState.error
                         ? <ErrorView />
                         : scheduleList.length === 0

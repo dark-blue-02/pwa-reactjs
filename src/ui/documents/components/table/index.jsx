@@ -25,7 +25,7 @@ const Main = observer(() => {
             store.incomingDocListState === DataState.error
                 ? <ErrorView />
                 : store.incomingDocListState === DataState.loading
-                    ? <LoadingView className=" h-[12.5rem]" />
+                    ? <LoadingView />
                     : store.incomingDocList.totalCount === 0
                         ? <NoDataView />
                         : <>

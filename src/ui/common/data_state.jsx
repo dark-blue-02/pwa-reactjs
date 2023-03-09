@@ -1,7 +1,7 @@
 import React from "react";
 import errorImg from "../../assets/img/404.png";
 import noDataImg from "../../assets/img/no-data.png";
-import CircularProgress from "@mui/material/CircularProgress";
+import Skeleton from "@mui/material/Skeleton";
 
 function containerStyle() {
     const style = "flex flex-col justify-center items-center"
@@ -31,8 +31,21 @@ export function NoDataView({ className = "" }) {
 }
 
 export function LoadingView({ className = "" }) {
-    return <div className={`${containerStyle()} ${className}`}>
-        <CircularProgress />
+    return <div className={className}>
+        {
+            [...Array(4)].map((_, index) => {
+                return <>
+                    <Skeleton
+                        key={index}
+                        variant="rounded"
+                        animation="wave"
+                        width={"100%"}
+                        height={80}
+                    />
+                    <div className=" h-4" />
+                </>
+            })
+        }
     </div>
 }
 
