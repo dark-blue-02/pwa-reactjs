@@ -15,7 +15,7 @@ const Content = observer(() => {
 
     return <div className=" flex mt-4 justify-center">
         <Dropdown totalCount={totalPages} />
-        <div className="w-10" />
+        <div className="w-8" />
         <PageCountDisplay totalCount={totalPages} />
         <div className="w-4" />
         <Controller totalCount={totalPages} />

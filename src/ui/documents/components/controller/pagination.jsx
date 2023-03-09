@@ -23,7 +23,7 @@ export default function Controller({ totalCount }) {
                 color: cantGoToPrevious ? color.icon_normal : color.black
             }} />
         </button>
-        <div className="w-6" />
+        <div className="w-4" />
         <button
             onClick={() => store.changePageIndex(store.pageIndex - 1)}
             disabled={cantGoToPrevious}>
@@ -32,7 +32,7 @@ export default function Controller({ totalCount }) {
                 color: cantGoToPrevious ? color.icon_normal : color.black
             }} />
         </button>
-        <div className="w-6" />
+        <div className="w-4" />
         <button
             onClick={() => store.changePageIndex(store.pageIndex + 1)}
             disabled={cantGoToNext}>
@@ -41,7 +41,7 @@ export default function Controller({ totalCount }) {
                 color: cantGoToNext ? color.icon_normal : color.black
             }} />
         </button>
-        <div className="w-6" />
+        <div className="w-4" />
         <button
             onClick={() => store.changePageIndex(totalCount - 1)}
             disabled={cantGoToNext}>

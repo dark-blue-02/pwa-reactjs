@@ -33,7 +33,7 @@ export default function Navbar() {
 
     return <div className="flex relative h-10">
         <div
-            className=" absolute h-[0.2rem] rounded-t-[0.125rem] bg-primary duration-500"
+            className=" absolute h-[0.2rem] bottom-4 rounded-t-[0.125rem] bg-primary duration-500"
             style={{
                 left: indicatorPos.left,
                 width: indicatorPos.width,

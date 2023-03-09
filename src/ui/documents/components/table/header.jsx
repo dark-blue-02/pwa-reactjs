@@ -3,6 +3,7 @@ import TableRow from "./row";
 
 export default function Header() {
     return <TableRow
+        className=" absolute"
         cells={[
             "Số đến",
             "Số hiệu",

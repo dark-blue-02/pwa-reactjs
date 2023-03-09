@@ -5,7 +5,7 @@ import { convert as convertHtmlToText } from "html-to-text";
 import { HomepageContext } from "../../home_screen";
 import { Title, TimeDisplay, MultilineText, LinkifyText } from "./text";
 import { CircularProgress } from "@mui/material";
-import { ErrorView, NoDataView } from "../../../common/data_result";
+import { ErrorView, NoDataView } from "../../../common/data_state";
 
 export const ListView = observer(
     () => {
