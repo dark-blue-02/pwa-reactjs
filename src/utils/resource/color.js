@@ -9,7 +9,7 @@ export const color = {
     label: '#737373',
     hint: '#C6C6C6',
     icon_normal: '#A2A2A2',
-    F8F8F8: '#F8F8F8',
+    item_bg: '#F8F8F8',
     F3F3F3: '#F3F3F3',
     '9F9F9F': '#9F9F9F',
     'E0E0E0': '#E0E0E0',

@@ -61,7 +61,7 @@ function InputField({ title, icon, hint, onChange, isPassword }) {
             <p className=" text-base font-semibold tracking-[-0.4px] leading-[22px]">{title}</p>
             <div className=" h-3" />
             <Input
-                className="text-base leading-[22px] tracking-[-0.6px] bg-F8F8F8 rounded-lg p-4"
+                className="text-base leading-[22px] tracking-[-0.6px] bg-item-bg rounded-lg p-4"
                 size="small"
                 type={isPassword && hideText ? "password" : "text"}
                 fullWidth={true}

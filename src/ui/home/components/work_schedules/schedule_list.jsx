@@ -39,7 +39,7 @@ export const ListView = observer(
                     : "?";
 
                 return <div
-                    className=" flex flex-col bg-F8F8F8 rounded-lg border-blue-400 my-2 mx-2 px-4 py-4"
+                    className=" flex flex-col bg-item-bg rounded-lg border-blue-400 my-2 mx-2 px-4 py-4"
                     key={index}
                 >
                     <div className="flex">
