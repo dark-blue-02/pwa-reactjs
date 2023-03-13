@@ -6,11 +6,14 @@ export default function useCheckbox() {
 
     return {
         checked: checked,
-        component(title = "") {
+        component(title = "", onChange = (_value) => { }) {
             return <div className="flex items-center">
                 <div
                     className="w-5 h-5 border-2 border-link rounded-[.125rem] z-0"
-                    onClick={() => setChecked(!checked)}
+                    onClick={() => {
+                        setChecked(!checked)
+                        onChange(!checked)
+                    }}
                     style={{ backgroundColor: checked ? color.link : 'transparent' }}>
                     {
                         checked &&

@@ -29,6 +29,7 @@ export default class DocumentStore {
         searchQuery: "",
         filterPriorityTasks: false,
         filterUnreadTasks: false,
+        filterDocStatus: "",
     }
 
     constructor() {
@@ -40,6 +41,7 @@ export default class DocumentStore {
             getIncomingDocList: action,
             changePageIndex: action,
             updateSearchQuery: action,
+            updateFilter: action,
         })
     }
 
@@ -81,11 +83,13 @@ export default class DocumentStore {
     updateFilter({
         priorityTasks = this.uiState.filterPriorityTasks,
         unreadTasks = this.uiState.filterUnreadTasks,
+        docStatus = this.uiState.filterDocStatus,
     }) {
         this.uiState = {
             ...this.uiState,
             filterPriorityTasks: priorityTasks,
             filterUnreadTasks: unreadTasks,
+            filterDocStatus: docStatus,
         }
     }
 }

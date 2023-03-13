@@ -1,3 +1,4 @@
+export { DocStatus } from "./class/doc_status";
 export { Result } from "./state/result";
 export { default as TwoDigits } from "./class/two_digit";
 export { default as DateTime } from "./class/date_time";
