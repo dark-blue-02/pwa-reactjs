@@ -25,14 +25,17 @@ export default class DocumentStore {
          */
         docs: [],
     }
+    searchQuery = ""
 
     constructor() {
         makeObservable(this, {
             incomingDocListState: observable,
             incomingDocList: observable,
             pageIndex: observable,
+            searchQuery: observable,
             getIncomingDocList: action,
             changePageIndex: action,
+            updateSearchQuery: action,
         })
     }
 
@@ -57,5 +60,12 @@ export default class DocumentStore {
     changePageIndex(index) {
         this.pageIndex = index
         this.getIncomingDocList({ pageIndex: index })
+    }
+
+    /**
+     * @param {string} query
+     */
+    updateSearchQuery(query) {
+        this.searchQuery = query
     }
 }

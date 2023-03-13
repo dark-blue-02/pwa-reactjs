@@ -23,10 +23,12 @@ module.exports = {
         'light-yellow': '#FFF6C5',
         'brown': '#615207',
         'item-bg': '#F8F8F8',
+        'link': '#0075FF',
         'F3F3F3': '#F3F3F3',
         '9F9F9F': '#9F9F9F',
         'E0E0E0': '#E0E0E0',
         'E0F2FF': '#E0F2FF',
+        '23374D': '#23374D',
       }
     },
   },
