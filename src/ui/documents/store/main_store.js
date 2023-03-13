@@ -27,9 +27,10 @@ export default class DocumentStore {
     }
     uiState = {
         searchQuery: "",
-        filterPriorityTasks: false,
         filterUnreadTasks: false,
         filterDocStatus: "",
+        filterStartDate: "",
+        filterEndDate: "",
     }
 
     constructor() {
@@ -42,6 +43,7 @@ export default class DocumentStore {
             changePageIndex: action,
             updateSearchQuery: action,
             updateFilter: action,
+            resetFilter: action,
         })
     }
 
@@ -81,15 +83,27 @@ export default class DocumentStore {
     }
 
     updateFilter({
-        priorityTasks = this.uiState.filterPriorityTasks,
         unreadTasks = this.uiState.filterUnreadTasks,
         docStatus = this.uiState.filterDocStatus,
+        startDate = this.uiState.startDate,
+        endDate = this.uiState.endDate,
     }) {
         this.uiState = {
             ...this.uiState,
-            filterPriorityTasks: priorityTasks,
             filterUnreadTasks: unreadTasks,
             filterDocStatus: docStatus,
+            filterStartDate: startDate ?? "",
+            filterEndDate: endDate ?? "",
+        }
+    }
+
+    resetFilter() {
+        this.uiState = {
+            searchQuery: "",
+            filterUnreadTasks: false,
+            filterDocStatus: "",
+            filterStartDate: "",
+            filterEndDate: "",
         }
     }
 }

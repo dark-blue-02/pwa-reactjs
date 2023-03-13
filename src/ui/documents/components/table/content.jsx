@@ -19,6 +19,29 @@ export const Content = observer(() => {
                         || doc.documentNumber.toString().includes(searchQuery)
                         || doc.title.includes(searchQuery)
                 })
+                .filter((doc) => {
+                    const isUnreadTask = store.uiState.filterUnreadTasks
+                        ? doc.isRead !== true
+                        : true
+                    const matchDocStatus = store.uiState.filterDocStatus !== ""
+                        ? doc.documentStatus === store.uiState.filterDocStatus
+                        : true
+
+                    const inTimeRange = store.uiState.filterStartDate !== "" && store.uiState.filterEndDate !== ""
+                        ? DateTime.compare(
+                            new Date(Date.parse(store.uiState.filterStartDate)),
+                            new Date()
+                        ) === -1
+                        && DateTime.compare(
+                            new Date(Date.parse(store.uiState.filterEndDate)),
+                            new Date()
+                        ) === 1
+                        : true
+
+                    console.log(store.uiState.filterStartDate)
+
+                    return isUnreadTask && matchDocStatus && inTimeRange
+                })
                 .map((doc, index) => {
                     const formattedIncomingDate = DateTime.formatDate(
                         new Date(doc.incomingDate),
