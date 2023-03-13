@@ -18,9 +18,7 @@ export function useFullScreenDialogManager() {
                 }}
                 fullScreen
             >
-                <div className="bg-white">
-                    {children}
-                </div>
+                <div className="bg-white">{children}</div>
             </Modal>
         }
     }

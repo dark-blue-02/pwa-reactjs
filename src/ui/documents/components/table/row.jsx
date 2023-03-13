@@ -18,14 +18,14 @@ export default function TableRow({ cells, className = "", bold = false, isHeader
                 return <div key={index} className="flex text-left items-center ">
                     {index !== 0 && <p className={separatorStyle}>|</p>}
 
-                    <p className={textStyle}
+                    <div className={textStyle}
                         style={{
                             width: `${width}px`,
                             fontWeight: bold ? "bold" : "normal"
                         }}
                     >
                         {cell}
-                    </p>
+                    </div>
                 </div>
             })
         }

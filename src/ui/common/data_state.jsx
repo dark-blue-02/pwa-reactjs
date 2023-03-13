@@ -34,7 +34,7 @@ export function LoadingView({ className = "" }) {
     return <div className={className}>
         {
             [...Array(4)].map((_, index) => {
-                return <>
+                return <div key={index}>
                     <Skeleton
                         key={index}
                         variant="rounded"
@@ -43,7 +43,7 @@ export function LoadingView({ className = "" }) {
                         height={80}
                     />
                     <div className=" h-4" />
-                </>
+                </div>
             })
         }
     </div>

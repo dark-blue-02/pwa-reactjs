@@ -1,9 +1,9 @@
 import React from "react";
 import filterIcon from "../../../../assets/svg/filter_outline.svg"
 import Navbar from "./navbar";
-import Searchbar from "./search_bar";
 import { useFullScreenDialogManager } from "../../../common/fullscreen_dialog";
 import FilterDialog from "../filter_dialog";
+import Searchbar from "./search_bar";
 
 export default function Header() {
     const filterDialogManager = useFullScreenDialogManager()

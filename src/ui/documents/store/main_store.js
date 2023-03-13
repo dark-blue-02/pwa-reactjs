@@ -25,14 +25,18 @@ export default class DocumentStore {
          */
         docs: [],
     }
-    searchQuery = ""
+    uiState = {
+        searchQuery: "",
+        filterPriorityTasks: false,
+        filterUnreadTasks: false,
+    }
 
     constructor() {
         makeObservable(this, {
             incomingDocListState: observable,
             incomingDocList: observable,
             pageIndex: observable,
-            searchQuery: observable,
+            uiState: observable,
             getIncomingDocList: action,
             changePageIndex: action,
             updateSearchQuery: action,
@@ -62,10 +66,26 @@ export default class DocumentStore {
         this.getIncomingDocList({ pageIndex: index })
     }
 
+    //* UI Event:
+
     /**
      * @param {string} query
      */
     updateSearchQuery(query) {
-        this.searchQuery = query
+        this.uiState = {
+            ...this.uiState,
+            searchQuery: query
+        }
+    }
+
+    updateFilter({
+        priorityTasks = this.uiState.filterPriorityTasks,
+        unreadTasks = this.uiState.filterUnreadTasks,
+    }) {
+        this.uiState = {
+            ...this.uiState,
+            filterPriorityTasks: priorityTasks,
+            filterUnreadTasks: unreadTasks,
+        }
     }
 }
