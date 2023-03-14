@@ -11,6 +11,10 @@ export default class DateTime {
      */
     static rightNow() { return Date.now() }
 
+    static fromString(text) {
+        return new Date(Date.parse(text))
+    }
+
     /**
      * @param {Date} date
      */
@@ -102,6 +106,11 @@ export default class DateTime {
         const month = TwoDigits.numToTwoDigits(date.getMonth() + 1)
         const year = date.getFullYear()
         return `${day}${separator}${month}${separator}${year}`
+    }
+
+    static toString(textDate, separator) {
+        const date = DateTime.fromString(textDate)
+        return this.formatDate(date, separator)
     }
 
     /**

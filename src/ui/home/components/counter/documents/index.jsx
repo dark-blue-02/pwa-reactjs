@@ -17,7 +17,7 @@ export default function DocumentCounter() {
             <SmallText>
                 {
                     `${TwoDigits.numToTwoDigits(today.getDate())}` +
-                    ` tháng ${TwoDigits.numToTwoDigits(today.getMonth())},` +
+                    ` tháng ${TwoDigits.numToTwoDigits(today.getMonth() + 1)},` +
                     ` ${TwoDigits.numToTwoDigits(today.getFullYear())}`
                 }
             </SmallText>

@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import useCheckbox from "./checkbox";
 import { DocumentScreenContext } from "../../document_screen";
 import { DocStatusDropdown } from "./status_dropdown";
 import DateSelector from "./date_picker";
+import { Checkbox } from "../../../common/checkbox";
 
 export default function FilterDialog({ closeDialog }) {
     const store = useContext(DocumentScreenContext).mainStore
-    const unreadTaskCheckbox = useCheckbox(store.uiState.filterUnreadTasks)
 
     const titleStyle = "font-semibold text-sm tracking-[-0.1px] text-label-form"
     const buttonStyle = "flex flex-1 rounded-lg h-[3.5rem] justify-center items-center"
@@ -17,13 +16,11 @@ export default function FilterDialog({ closeDialog }) {
             <p className={titleStyle}>Lọc nhanh</p>
             <div className="h-2" />
             <div className="h-3" />
-            {unreadTaskCheckbox.component(
-                {
-                    checked: store.uiState.filterUnreadTasks,
-                    title: "Văn bản chưa đọc",
-                    onChange: (value) => store.updateFilter({ unreadTasks: value }),
-                }
-            )}
+            <Checkbox
+                title="Văn bản chưa đọc"
+                onChange={store.updateCheckBox}
+                checked={store.uiState.checkBoxchecked}
+            />
 
             <div className="h-7" />
             <p className={titleStyle}>Ngày bắt đầu - kết thúc</p>
