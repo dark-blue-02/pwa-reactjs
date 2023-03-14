@@ -38,8 +38,6 @@ export const Content = observer(() => {
                         ) === 1
                         : true
 
-                    console.log(store.uiState.filterStartDate)
-
                     return isUnreadTask && matchDocStatus && inTimeRange
                 })
                 .map((doc, index) => {

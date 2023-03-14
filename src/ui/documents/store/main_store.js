@@ -31,7 +31,6 @@ export default class DocumentStore {
         filterDocStatus: "",
         filterStartDate: "",
         filterEndDate: "",
-        checkBoxchecked: false,
     }
 
     constructor() {
@@ -43,7 +42,7 @@ export default class DocumentStore {
             getIncomingDocList: action,
             changePageIndex: action,
             updateSearchQuery: action,
-            updateCheckBox: action,
+            updateCheckbox: action,
             updateFilter: action,
             resetFilter: action,
         })
@@ -74,13 +73,11 @@ export default class DocumentStore {
 
     //* UI Event:
 
-    updateCheckBox() {
+    updateCheckbox(check) {
         this.uiState = {
             ...this.uiState,
-            checkBoxchecked: !this.uiState.checkBoxchecked,
+            filterUnreadTasks: check,
         }
-
-        console.log(this.uiState)
     }
 
     updateSearchQuery(query) {

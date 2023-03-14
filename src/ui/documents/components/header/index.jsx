@@ -17,7 +17,7 @@ export default function Header() {
         </div>
         <div className=" h-4" />
         <Navbar />
-        <div className=" h-4" />
+        <div className=" h-5" />
         <Searchbar />
         <div className=" h-4" />
         {
