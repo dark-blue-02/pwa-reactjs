@@ -4,6 +4,7 @@ import { DatePicker } from "@mantine/dates";
 import { useDialogManager } from "../../../common/dialog";
 import { DateTime } from "../../../../utils";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { observer } from "mobx-react-lite";
 
 export default function DateSelector() {
     const dialog = useDialogManager()
@@ -28,16 +29,20 @@ function InputField({ openTimePickerDialog }) {
     const startDate = DateTime.toString(store.uiState.filterStartDate, "/")
     const endDate = DateTime.toString(store.uiState.filterEndDate, "/")
 
-    return <div
-        className="flex h-fit p-3 border rounded border-icon-normal justify-between items-center"
-        onClick={() => openTimePickerDialog()}
-    >
-        <p className="text-sm leading-[14.7px] text-23374D">
+    const Text = observer(() => {
+        return <p className="text-sm leading-[14.7px] text-23374D">
             {
                 store.uiState.filterStartDate !== "" && store.uiState.filterEndDate !== "" &&
                 `${startDate} - ${endDate}`
             }
         </p>
+    })
+
+    return <div
+        className="flex h-fit p-3 border rounded border-icon-normal justify-between items-center"
+        onClick={() => openTimePickerDialog()}
+    >
+        <Text />
         <ArrowDropDownIcon className="text-primary" />
     </div>
 }

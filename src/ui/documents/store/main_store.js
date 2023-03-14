@@ -1,5 +1,5 @@
 import { internalDocRepository } from "../../../repository";
-import { DataState } from "../../../utils";
+import { DataState, DateTime } from "../../../utils";
 import { makeObservable, observable, action } from "mobx"
 
 export default class DocumentStore {
@@ -69,6 +69,40 @@ export default class DocumentStore {
     changePageIndex(index) {
         this.pageIndex = index
         this.getIncomingDocList({ pageIndex: index })
+    }
+
+    filterList() {
+        const list = this.incomingDocList.docs
+            .filter((doc) => {
+                const searchQuery = this.uiState.searchQuery
+                return doc.incomingNumber.toString().includes(searchQuery)
+                    || doc.documentNumber.toString().includes(searchQuery)
+                    || doc.title.includes(searchQuery)
+            })
+            .filter((doc) => {
+                const isUnreadTask = this.uiState.filterUnreadTasks
+                    ? doc.isRead !== true
+                    : true
+                const matchDocStatus = this.uiState.filterDocStatus !== ""
+                    ? doc.documentStatus === this.uiState.filterDocStatus
+                    : true
+
+                const inTimeRange = this.uiState.filterStartDate !== "" && this.uiState.filterEndDate !== ""
+                    ? DateTime.compare(
+                        DateTime.fromString(this.uiState.filterStartDate),
+                        DateTime.fromString(doc.incomingDate)
+                    ) === -1
+                    && DateTime.compare(
+                        DateTime.fromString(this.uiState.filterEndDate),
+                        DateTime.fromString(doc.incomingDate)
+                    ) === 1
+                    : true
+
+                return isUnreadTask && matchDocStatus && inTimeRange
+            })
+
+        console.log(list);
+        return list
     }
 
     //* UI Event:
