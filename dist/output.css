@@ -758,6 +758,18 @@ video {
   height: 80vh;
 }
 
+.h-\[95vh\] {
+  height: 95vh;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-\[3\.75rem\] {
+  height: 3.75rem;
+}
+
 .w-1 {
   width: 0.25rem;
 }
@@ -1317,6 +1329,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-hint {
+  --tw-text-opacity: 1;
+  color: rgb(198 198 198 / var(--tw-text-opacity));
 }
 
 .underline {

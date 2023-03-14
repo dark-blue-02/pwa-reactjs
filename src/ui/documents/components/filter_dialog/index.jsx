@@ -3,6 +3,7 @@ import { DocumentScreenContext } from "../../document_screen";
 import { DocStatusDropdown } from "./status_dropdown";
 import DateSelector from "./date_picker";
 import { UnreadCheckbox } from "./unread_checkbox";
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function FilterDialog({ closeDialog }) {
     const store = useContext(DocumentScreenContext).mainStore
@@ -11,8 +12,15 @@ export default function FilterDialog({ closeDialog }) {
     const buttonStyle = "flex flex-1 rounded-lg h-[3.5rem] justify-center items-center"
     const buttonLabelStyle = "font-semibold text-base tracking-[-0.4px]"
 
-    return <div className="flex flex-col justify-between h-[90vh] pt-[3.75rem] px-5">
+    return <div className="flex flex-col justify-between h-[95vh] px-5">
         <div className="flex flex-col">
+            <div className="flex self-end h-8">
+                <div className="h-fit w-fit" onClick={closeDialog}>
+                    <CloseIcon className="text-hint" />
+                </div>
+            </div>
+            <div className="h-[3.75rem]" />
+
             <p className={titleStyle}>Lọc nhanh</p>
             <div className="h-2" />
             <div className="h-3" />
@@ -34,7 +42,10 @@ export default function FilterDialog({ closeDialog }) {
                 <p className={`${buttonLabelStyle} text-primary`}>Nhập lại</p>
             </button>
             <div className="w-3" />
-            <button className={`${buttonStyle} bg-primary`} onClick={closeDialog}>
+            <button className={`${buttonStyle} bg-primary`} onClick={() => {
+                store.filterList()
+                closeDialog()
+            }}>
                 <p className={`${buttonLabelStyle} text-white`}>Áp dụng</p>
             </button>
         </div>

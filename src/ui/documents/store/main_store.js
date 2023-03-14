@@ -45,14 +45,18 @@ export default class DocumentStore {
             updateCheckbox: action,
             updateFilter: action,
             resetFilter: action,
+            filterList: action,
         })
     }
 
-    async getIncomingDocList({ pageIndex }) {
+    async getIncomingDocList({ pageIndex, title = "", fromIncomingDate = "", toIncomingDate = "" }) {
         this.incomingDocListState = DataState.loading
         const data = await this.repository.getIncomingDocs({
             pageIndex: pageIndex,
-            pageSize: this.pageSize
+            pageSize: this.pageSize,
+            title: title,
+            fromIncomingDate: fromIncomingDate,
+            toIncomingDate: toIncomingDate,
         })
         if (data !== null) {
             this.incomingDocListState = DataState.success
@@ -72,37 +76,16 @@ export default class DocumentStore {
     }
 
     filterList() {
-        const list = this.incomingDocList.docs
-            .filter((doc) => {
-                const searchQuery = this.uiState.searchQuery
-                return doc.incomingNumber.toString().includes(searchQuery)
-                    || doc.documentNumber.toString().includes(searchQuery)
-                    || doc.title.includes(searchQuery)
-            })
-            .filter((doc) => {
-                const isUnreadTask = this.uiState.filterUnreadTasks
-                    ? doc.isRead !== true
-                    : true
-                const matchDocStatus = this.uiState.filterDocStatus !== ""
-                    ? doc.documentStatus === this.uiState.filterDocStatus
-                    : true
-
-                const inTimeRange = this.uiState.filterStartDate !== "" && this.uiState.filterEndDate !== ""
-                    ? DateTime.compare(
-                        DateTime.fromString(this.uiState.filterStartDate),
-                        DateTime.fromString(doc.incomingDate)
-                    ) === -1
-                    && DateTime.compare(
-                        DateTime.fromString(this.uiState.filterEndDate),
-                        DateTime.fromString(doc.incomingDate)
-                    ) === 1
-                    : true
-
-                return isUnreadTask && matchDocStatus && inTimeRange
-            })
-
-        console.log(list);
-        return list
+        this.getIncomingDocList({
+            pageIndex: this.pageIndex,
+            title: this.uiState.searchQuery,
+            fromIncomingDate: this.uiState.filterStartDate === ""
+                ? this.uiState.filterStartDate
+                : DateTime.toString(this.uiState.filterStartDate, "-", true),
+            toIncomingDate: this.uiState.filterEndDate === ""
+                ? this.uiState.filterEndDate
+                : DateTime.toString(this.uiState.filterEndDate, "-", true),
+        })
     }
 
     //* UI Event:
@@ -138,7 +121,7 @@ export default class DocumentStore {
 
     resetFilter() {
         this.uiState = {
-            searchQuery: "",
+            ...this.uiState,
             filterUnreadTasks: false,
             filterDocStatus: "",
             filterStartDate: "",

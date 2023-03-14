@@ -3,7 +3,13 @@ import { Result, refreshTokenIfExpired, savedBearerToken } from "../utils";
 
 export const internalDocRepository = {
     _api: internalDocApi,
-    async getIncomingDocs({ pageIndex, pageSize }) {
+    async getIncomingDocs({
+        pageIndex,
+        pageSize,
+        title = "",
+        toIncomingDate = "",
+        fromIncomingDate = "",
+    }) {
         const refreshTokenResult = await refreshTokenIfExpired()
         if (refreshTokenResult === Result.failed) {
             return null;
@@ -13,6 +19,9 @@ export const internalDocRepository = {
             const data = await this._api.getIncomingDocs({
                 pageIndex: pageIndex,
                 size: pageSize,
+                title: title,
+                fromIncomingDate: fromIncomingDate,
+                toIncomingDate: toIncomingDate,
                 bearerToken: savedBearerToken
             });
             return {

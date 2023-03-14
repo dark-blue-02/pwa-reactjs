@@ -99,18 +99,20 @@ export default class DateTime {
     /**
      * @param {Date} date
      * @param {string} separator
-     * @return dd-MM-yyyy
+     * @return dd-MM-yyyy or yyyy-MM-dd (reverse)
      */
-    static formatDate(date, separator) {
+    static formatDate(date, separator, reverse = false) {
         const day = TwoDigits.numToTwoDigits(date.getDate())
         const month = TwoDigits.numToTwoDigits(date.getMonth() + 1)
         const year = date.getFullYear()
-        return `${day}${separator}${month}${separator}${year}`
+        return reverse
+            ? `${year}${separator}${month}${separator}${day}`
+            : `${day}${separator}${month}${separator}${year}`
     }
 
-    static toString(textDate, separator) {
+    static toString(textDate, separator, reverse = false) {
         const date = DateTime.fromString(textDate)
-        return this.formatDate(date, separator)
+        return this.formatDate(date, separator, reverse)
     }
 
     /**

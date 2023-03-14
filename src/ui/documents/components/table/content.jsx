@@ -12,7 +12,7 @@ export const Content = observer(() => {
     return <>
         {
             store.incomingDocList.totalCount > 0 &&
-            store.filterList().map((doc, index) => {
+            store.incomingDocList.docs.map((doc, index) => {
                 const formattedIncomingDate = DateTime.formatDate(
                     new Date(doc.incomingDate),
                     "/"

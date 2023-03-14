@@ -11,6 +11,7 @@ export default function Searchbar() {
         onInput={(event) => {
             // @ts-ignore
             store.updateSearchQuery(event.target.value)
+            store.filterList()
         }}
     />
 }

@@ -8,13 +8,29 @@ export const internalDocApi = {
     /**
      * @returns {Promise<{total_count: number, data: any[]}>}
      */
-    async getIncomingDocs({ pageIndex, size, bearerToken }) {
+    async getIncomingDocs({
+        pageIndex,
+        size,
+        title = "",
+        fromIncomingDate = "", toIncomingDate = "",
+        bearerToken,
+    }) {
+        const titleParams = title !== "" ? { title: title } : {}
+        const dateRangeParams = fromIncomingDate !== "" && toIncomingDate !== ""
+            ? {
+                from_incoming_date: fromIncomingDate,
+                to_incoming_date: toIncomingDate,
+            }
+            : {}
+
         const response = await axios.get(
             `${this._instance.getUri()}/incomingv2`,
             {
                 params: {
                     page: pageIndex,
                     size: size,
+                    ...titleParams,
+                    ...dateRangeParams,
                 },
                 headers: {
                     "Authorization": bearerToken,
