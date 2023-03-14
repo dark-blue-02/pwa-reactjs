@@ -15,6 +15,7 @@ export function useDialogManager(fullscreen = false) {
                 title={title}
                 transitionProps={{ transition: 'slide-up', duration: 300, exitDuration: 300 }}
                 centered
+                yOffset={0}
                 withCloseButton={false}
                 overlayProps={{ blur: 3, }}
                 fullScreen={fullscreen}

@@ -633,6 +633,14 @@ video {
   z-index: 10;
 }
 
+.z-\[20000\] {
+  z-index: 20000;
+}
+
+.z-\[2000\] {
+  z-index: 2000;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -740,6 +748,14 @@ video {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+
+.h-\[90vh\] {
+  height: 90vh;
+}
+
+.h-\[80vh\] {
+  height: 80vh;
 }
 
 .w-1 {

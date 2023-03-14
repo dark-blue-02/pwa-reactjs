@@ -11,7 +11,7 @@ export default function FilterDialog({ closeDialog }) {
     const buttonStyle = "flex flex-1 rounded-lg h-[3.5rem] justify-center items-center"
     const buttonLabelStyle = "font-semibold text-base tracking-[-0.4px]"
 
-    return <div className="flex flex-col justify-between h-screen pt-[3.75rem] px-5">
+    return <div className="flex flex-col justify-between h-[90vh] pt-[3.75rem] px-5">
         <div className="flex flex-col">
             <p className={titleStyle}>Lọc nhanh</p>
             <div className="h-2" />
