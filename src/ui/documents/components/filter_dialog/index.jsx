@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { DocumentScreenContext } from "../../document_screen";
-import { DocStatusDropdown } from "./status_dropdown";
 import DateSelector from "../../../common/date_range_picker";
-import { UnreadCheckbox } from "./unread_checkbox";
 import CloseIcon from '@mui/icons-material/Close';
 import { observer } from "mobx-react-lite";
 import TextField from "./text_field";
@@ -23,10 +21,10 @@ export default function FilterDialog({ closeDialog }) {
             </div>
             <div className="h-[3.75rem]" />
 
-            <p className={titleStyle}>Lọc nhanh</p>
+            {/* <p className={titleStyle}>Lọc nhanh</p>
             <div className="h-2" />
             <div className="h-3" />
-            <UnreadCheckbox />
+            <UnreadCheckbox /> */}
 
             <div className="h-7" />
             <p className={titleStyle}>Ngày bắt đầu - kết thúc</p>
@@ -38,10 +36,10 @@ export default function FilterDialog({ closeDialog }) {
             <div className="h-1" />
             <IssuedDatePicker />
 
-            <div className="h-6" />
+            {/* <div className="h-6" />
             <p className={titleStyle}>Trạng thái</p>
             <div className="h-1" />
-            <DocStatusDropdown />
+            <DocStatusDropdown /> */}
 
             <div className="h-6" />
             <p className={titleStyle}>Người ký</p>
@@ -112,7 +110,7 @@ const AuthorityNameTextField = observer(() => {
 
     return <TextField
         value={store.uiState.authorityName}
-        hint="Người ký"
+        hint="Cơ quan ban hành"
         onChange={(value) => store.updateFilter({ authorityName: value })}
     />
 })

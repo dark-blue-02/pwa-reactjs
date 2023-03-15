@@ -13,7 +13,7 @@ const Content = observer(() => {
     const store = useContext(DocumentScreenContext).mainStore;
     const totalPages = Math.ceil(store.incomingDocList.totalCount / store.pageSize)
 
-    return <div className=" flex mt-4 justify-center">
+    return <div className=" flex flex-1 mt-4 justify-center items-center">
         <Dropdown totalCount={totalPages} />
         <div className="w-8" />
         <PageCountDisplay totalCount={totalPages} />

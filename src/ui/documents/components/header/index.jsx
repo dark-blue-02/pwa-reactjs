@@ -8,7 +8,7 @@ import Searchbar from "./search_bar";
 export default function Header() {
     const filterDialogManager = useDialogManager(true)
 
-    return <div className="flex flex-col">
+    return <div className="flex flex-1 flex-col">
         <div className="flex justify-between pr-5">
             <p className=" text-blue-grey text-[1.75rem] font-bold leading-[1.85rem] tracking-[-0.1px]">
                 Văn bản nội bộ

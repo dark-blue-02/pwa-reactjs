@@ -12,7 +12,7 @@ export default function DocumentScreen() {
     const store = new DocumentStore()
 
     return <DocumentScreenContext.Provider value={{ mainStore: store }}>
-        <div className="flex flex-col text-start ml-5 mt-4">
+        <div className="flex flex-col text-start ml-5 mt-4 h-screen">
             {components.header}
             {components.table}
             {components.controller}

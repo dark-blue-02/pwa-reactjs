@@ -34,8 +34,7 @@ export const NavItems = observer(() => {
     return <Tabs
         className="flex justify-center px-8 pt-4 overflow-x-scroll w-screen"
         value={store.selectedIndex}
-        variant="fullWidth"
-        centered
+        variant={window.innerWidth < 640 ? "scrollable" : "fullWidth"}
     >
         {
             labels.map((label, index) => {

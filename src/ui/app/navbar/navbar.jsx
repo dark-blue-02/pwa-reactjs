@@ -21,5 +21,5 @@ export default function MainNavbar() {
     </NavBarContext.Provider>
 }
 
-export const EmptyDivBehindNavbar = () => <div className="h-[100px]" />
+export const EmptyDivBehindNavbar = () => <div className="h-[7.5rem]" />
 

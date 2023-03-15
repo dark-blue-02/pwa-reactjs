@@ -20,7 +20,7 @@ export default function Table() {
 const Main = observer(() => {
     const store = useContext(DocumentScreenContext).mainStore
 
-    return <div className="relative overflow-x-scroll">
+    return <div className="flex flex-col flex-[12] relative overflow-x-scroll">
         {
             store.incomingDocListState === DataState.error
                 ? <ErrorView />
