@@ -87,25 +87,21 @@ export default class DocumentStore {
      */
     changePageIndex(index) {
         this.pageIndex = index
-        this.getIncomingDocList({ pageIndex: index, ...this.uiState })
+        this.filterList(index)
     }
 
-    filterList() {
+    formatDate(date) {
+        return date === "" ? "" : DateTime.toString(date, "-", true)
+    }
+
+    filterList(pageIndex = this.pageIndex) {
         this.getIncomingDocList({
-            pageIndex: this.pageIndex,
+            pageIndex: pageIndex,
             title: this.uiState.searchQuery,
-            fromIncomingDate: this.uiState.filterIncomingStartDate === ""
-                ? this.uiState.filterIncomingStartDate
-                : DateTime.toString(this.uiState.filterIncomingStartDate, "-", true),
-            toIncomingDate: this.uiState.filterIncomingEndDate === ""
-                ? this.uiState.filterIncomingEndDate
-                : DateTime.toString(this.uiState.filterIncomingEndDate, "-", true),
-            fromIssuedDate: this.uiState.filterIssuedStartDate === ""
-                ? this.uiState.filterIssuedStartDate
-                : DateTime.toString(this.uiState.filterIssuedStartDate, "-", true),
-            toIssuedDate: this.uiState.filterIssuedEndDate === ""
-                ? this.uiState.filterIssuedEndDate
-                : DateTime.toString(this.uiState.filterIssuedEndDate, "-", true),
+            fromIncomingDate: this.formatDate(this.uiState.filterIncomingStartDate),
+            toIncomingDate: this.formatDate(this.uiState.filterIncomingEndDate),
+            fromIssuedDate: this.formatDate(this.uiState.filterIssuedStartDate),
+            toIssuedDate: this.formatDate(this.uiState.filterIssuedEndDate),
             signer: this.uiState.signer,
             authorityName: this.uiState.authorityName,
         })

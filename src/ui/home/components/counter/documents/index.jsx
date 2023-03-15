@@ -46,7 +46,7 @@ function Counter() {
                 duration={animationDuration}
                 exitDuration={animationDuration}
             >
-                {(style) => <div className="absolute" style={style}>
+                {(style) => <div key={0} className="absolute" style={style}>
                     <TotalDocCount />
                 </div>
                 }
@@ -56,7 +56,7 @@ function Counter() {
                 duration={animationDuration}
                 exitDuration={animationDuration}
             >
-                {(style) => <div className="absolute" style={style}>
+                {(style) => <div key={1} className="absolute" style={style}>
                     <DetailDocCount />
                 </div>
                 }

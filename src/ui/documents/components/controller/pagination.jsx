@@ -12,7 +12,7 @@ export default function Controller({ totalCount }) {
     const iconSize = 20
 
     const cantGoToPrevious = store.pageIndex === 0
-    const cantGoToNext = store.pageIndex === totalCount - 1
+    const cantGoToNext = store.pageIndex === totalCount - 1 || totalCount === 0
 
     return <div className="flex">
         <button

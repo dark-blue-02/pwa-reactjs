@@ -12,16 +12,16 @@ export default function Dropdown({ totalCount }) {
                 store.changePageIndex(Number(event.target.value))
             }}>
             {
-                [...Array.from(
-                    { length: totalCount },
-                    (_, index) => index)]
-                    .map((index) => {
-                        return <option key={index} value={index}>
-                            {index + 1 !== totalCount
-                                ? (index + 1) * store.pageSize
-                                : store.incomingDocList.totalCount}
-                        </option>
-                    })
+                totalCount > 0
+                    ? [...Array.from(
+                        { length: totalCount },
+                        (_, index) => index
+                    )].map((index) => <option key={index} value={index}>
+                        {index + 1 !== totalCount
+                            ? (index + 1) * store.pageSize
+                            : store.incomingDocList.totalCount}
+                    </option>)
+                    : <option key={0} value={0}>0</option>
             }
         </select>
     </div>

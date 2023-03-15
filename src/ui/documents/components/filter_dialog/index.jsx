@@ -86,8 +86,8 @@ const IssuedDatePicker = observer(() => {
 
     return <DateSelector
         title="Chọn ngày ban hành bắt đầu - kết thúc"
-        startDate={store.uiState.filterIncomingStartDate}
-        endDate={store.uiState.filterIncomingEndDate}
+        startDate={store.uiState.filterIssuedStartDate}
+        endDate={store.uiState.filterIssuedEndDate}
         onDateRangeChange={(value) => store.updateFilter({
             issuedStartDate: value[0],
             issuedEndDate: value[1]
