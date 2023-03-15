@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useMemo } from "react";
 import { Components } from "./components";
 import HomepageStore from "./store/main_store";
 import { DateTime } from "../../utils";
-import { EmptyDivBehindNavbar } from "../app/navbar";
+import { EmptyDivBehindNavbar } from "../app/navbar/navbar";
 
 export const HomepageContext = createContext({ store: new HomepageStore() });
 

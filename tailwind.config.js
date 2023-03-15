@@ -29,7 +29,10 @@ module.exports = {
         'E0E0E0': '#E0E0E0',
         'E0F2FF': '#E0F2FF',
         '23374D': '#23374D',
-      }
+      },
+      fontFamily: {
+        sans: ['Svn-Gilroy', 'sans-serif',]
+      },
     },
   },
   plugins: [],

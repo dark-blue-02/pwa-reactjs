@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { EmptyDivBehindNavbar } from "../app/navbar";
+import { EmptyDivBehindNavbar } from "../app/navbar/navbar";
 import DocumentStore from "./store/main_store";
 import { Components } from "./components";
 

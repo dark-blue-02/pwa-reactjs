@@ -3,7 +3,7 @@ import './App.css';
 import { userLocalStorage } from './data';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { routes } from './ui/navigation/routers/main_router';
-import MainNavbar from './ui/app/navbar';
+import MainNavbar from './ui/app/navbar/navbar';
 
 function App() {
   const navigate = useNavigate()
@@ -14,7 +14,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <div className="App flex flex-col w-screen h-screen">
+  return <div className="App flex flex-col w-screen h-screen font-sans">
     <Outlet />
     <MainNavbar />
   </div>
