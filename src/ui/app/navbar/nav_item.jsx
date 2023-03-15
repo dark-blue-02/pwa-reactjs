@@ -31,8 +31,6 @@ export const NavItems = observer(() => {
         <img src={OtherIcon} alt="other" />,
     ]
 
-    const paths = [routes.home, routes.home, routes.document, routes.home, routes.home]
-
     return <Tabs
         className="flex justify-center px-8 pt-4 overflow-x-scroll w-screen"
         value={store.selectedIndex}
@@ -52,7 +50,7 @@ export const NavItems = observer(() => {
                                     start={store.selectedIndex === index}
                                     index={index}
                                 >
-                                    <Link to={paths[index]}>{label}</Link>
+                                    {label}
                                 </AnimatedTab>
                                 <AnimatedTab
                                     start={store.selectedIndex !== index}
@@ -74,6 +72,7 @@ export const NavItems = observer(() => {
 function AnimatedTab({ start = true, index, children, absolute = false }) {
     const animationDuration = 400
     const navItemStyle = "text-black text-sm font-bold leading-6 tracking-[-0.2px]"
+    const paths = [routes.home, routes.home, routes.document, routes.home, routes.home]
 
     return <Transition mounted={start}
         transition="scale"
@@ -85,7 +84,7 @@ function AnimatedTab({ start = true, index, children, absolute = false }) {
             className={`${navItemStyle} ${absolute ? "absolute" : ""}`}
             style={style}
         >
-            {children}
+            <Link to={paths[index]}>{children}</Link>
         </div>}
     </Transition>
 }

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { DocumentScreenContext } from "../../document_screen";
 import { DocStatusDropdown } from "./status_dropdown";
-import DateSelector from "./date_picker";
+import DateSelector from "../../../common/date_range_picker";
 import { UnreadCheckbox } from "./unread_checkbox";
 import CloseIcon from '@mui/icons-material/Close';
+import { observer } from "mobx-react-lite";
+import TextField from "./text_field";
 
 export default function FilterDialog({ closeDialog }) {
     const store = useContext(DocumentScreenContext).mainStore
@@ -29,12 +31,27 @@ export default function FilterDialog({ closeDialog }) {
             <div className="h-7" />
             <p className={titleStyle}>Ngày bắt đầu - kết thúc</p>
             <div className="h-1" />
-            <DateSelector />
+            <IncomingDatePicker />
+
+            <div className="h-7" />
+            <p className={titleStyle}>Ngày ban hành bắt đầu - kết thúc</p>
+            <div className="h-1" />
+            <IssuedDatePicker />
 
             <div className="h-6" />
             <p className={titleStyle}>Trạng thái</p>
             <div className="h-1" />
             <DocStatusDropdown />
+
+            <div className="h-6" />
+            <p className={titleStyle}>Người ký</p>
+            <div className="h-1" />
+            <SignerTextField />
+
+            <div className="h-6" />
+            <p className={titleStyle}>Cơ quan ban hành</p>
+            <div className="h-1" />
+            <AuthorityNameTextField />
         </div>
 
         <div className="flex">
@@ -51,3 +68,58 @@ export default function FilterDialog({ closeDialog }) {
         </div>
     </div>
 }
+
+const IncomingDatePicker = observer(() => {
+    const store = useContext(DocumentScreenContext).mainStore
+
+    return <DateSelector
+        title="Chọn ngày bắt đầu - kết thúc"
+        startDate={store.uiState.filterIncomingStartDate}
+        endDate={store.uiState.filterIncomingEndDate}
+        onDateRangeChange={(value) => store.updateFilter({
+            incomingStartDate: value[0],
+            incomingEndDate: value[1]
+        })}
+    />
+})
+
+const IssuedDatePicker = observer(() => {
+    const store = useContext(DocumentScreenContext).mainStore
+
+    return <DateSelector
+        title="Chọn ngày ban hành bắt đầu - kết thúc"
+        startDate={store.uiState.filterIncomingStartDate}
+        endDate={store.uiState.filterIncomingEndDate}
+        onDateRangeChange={(value) => store.updateFilter({
+            issuedStartDate: value[0],
+            issuedEndDate: value[1]
+        })}
+    />
+})
+
+const SignerTextField = observer(() => {
+    const store = useContext(DocumentScreenContext).mainStore
+
+    return <TextField
+        value={store.uiState.signer}
+        hint="Người ký"
+        onChange={(value) => store.updateFilter({ signer: value })}
+    />
+})
+
+const AuthorityNameTextField = observer(() => {
+    const store = useContext(DocumentScreenContext).mainStore
+
+    return <TextField
+        value={store.uiState.authorityName}
+        hint="Người ký"
+        onChange={(value) => store.updateFilter({ authorityName: value })}
+    />
+})
+
+
+
+
+
+
+

@@ -9,6 +9,10 @@ export const internalDocRepository = {
         title = "",
         toIncomingDate = "",
         fromIncomingDate = "",
+        fromIssuedDate = "",
+        toIssuedDate = "",
+        signer = "",
+        authorityName = "",
     }) {
         const refreshTokenResult = await refreshTokenIfExpired()
         if (refreshTokenResult === Result.failed) {
@@ -22,6 +26,10 @@ export const internalDocRepository = {
                 title: title,
                 fromIncomingDate: fromIncomingDate,
                 toIncomingDate: toIncomingDate,
+                fromIssuedDate: fromIssuedDate,
+                toIssuedDate: toIssuedDate,
+                signer: signer,
+                authorityName: authorityName,
                 bearerToken: savedBearerToken
             });
             return {

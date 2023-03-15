@@ -29,8 +29,12 @@ export default class DocumentStore {
         searchQuery: "",
         filterUnreadTasks: false,
         filterDocStatus: "",
-        filterStartDate: "",
-        filterEndDate: "",
+        filterIncomingStartDate: "",
+        filterIncomingEndDate: "",
+        filterIssuedStartDate: "",
+        filterIssuedEndDate: "",
+        signer: "",
+        authorityName: "",
     }
 
     constructor() {
@@ -49,7 +53,14 @@ export default class DocumentStore {
         })
     }
 
-    async getIncomingDocList({ pageIndex, title = "", fromIncomingDate = "", toIncomingDate = "" }) {
+    async getIncomingDocList({
+        pageIndex,
+        title = "",
+        fromIncomingDate = "", toIncomingDate = "",
+        fromIssuedDate = "", toIssuedDate = "",
+        signer = "",
+        authorityName = "",
+    }) {
         this.incomingDocListState = DataState.loading
         const data = await this.repository.getIncomingDocs({
             pageIndex: pageIndex,
@@ -57,6 +68,10 @@ export default class DocumentStore {
             title: title,
             fromIncomingDate: fromIncomingDate,
             toIncomingDate: toIncomingDate,
+            fromIssuedDate: fromIssuedDate,
+            toIssuedDate: toIssuedDate,
+            signer: signer,
+            authorityName: authorityName,
         })
         if (data !== null) {
             this.incomingDocListState = DataState.success
@@ -72,19 +87,27 @@ export default class DocumentStore {
      */
     changePageIndex(index) {
         this.pageIndex = index
-        this.getIncomingDocList({ pageIndex: index })
+        this.getIncomingDocList({ pageIndex: index, ...this.uiState })
     }
 
     filterList() {
         this.getIncomingDocList({
             pageIndex: this.pageIndex,
             title: this.uiState.searchQuery,
-            fromIncomingDate: this.uiState.filterStartDate === ""
-                ? this.uiState.filterStartDate
-                : DateTime.toString(this.uiState.filterStartDate, "-", true),
-            toIncomingDate: this.uiState.filterEndDate === ""
-                ? this.uiState.filterEndDate
-                : DateTime.toString(this.uiState.filterEndDate, "-", true),
+            fromIncomingDate: this.uiState.filterIncomingStartDate === ""
+                ? this.uiState.filterIncomingStartDate
+                : DateTime.toString(this.uiState.filterIncomingStartDate, "-", true),
+            toIncomingDate: this.uiState.filterIncomingEndDate === ""
+                ? this.uiState.filterIncomingEndDate
+                : DateTime.toString(this.uiState.filterIncomingEndDate, "-", true),
+            fromIssuedDate: this.uiState.filterIssuedStartDate === ""
+                ? this.uiState.filterIssuedStartDate
+                : DateTime.toString(this.uiState.filterIssuedStartDate, "-", true),
+            toIssuedDate: this.uiState.filterIssuedEndDate === ""
+                ? this.uiState.filterIssuedEndDate
+                : DateTime.toString(this.uiState.filterIssuedEndDate, "-", true),
+            signer: this.uiState.signer,
+            authorityName: this.uiState.authorityName,
         })
     }
 
@@ -107,15 +130,23 @@ export default class DocumentStore {
     updateFilter({
         unreadTasks = this.uiState.filterUnreadTasks,
         docStatus = this.uiState.filterDocStatus,
-        startDate = this.uiState.startDate,
-        endDate = this.uiState.endDate,
+        incomingStartDate = this.uiState.filterIncomingStartDate,
+        incomingEndDate = this.uiState.filterIncomingEndDate,
+        issuedStartDate = this.uiState.filterIssuedStartDate,
+        issuedEndDate = this.uiState.filterIssuedStartDate,
+        signer = this.uiState.signer,
+        authorityName = this.uiState.authorityName,
     }) {
         this.uiState = {
             ...this.uiState,
             filterUnreadTasks: unreadTasks,
             filterDocStatus: docStatus,
-            filterStartDate: startDate ?? "",
-            filterEndDate: endDate ?? "",
+            filterIncomingStartDate: incomingStartDate ?? "",
+            filterIncomingEndDate: incomingEndDate ?? "",
+            filterIssuedStartDate: issuedStartDate ?? "",
+            filterIssuedEndDate: issuedEndDate ?? "",
+            signer: signer ?? "",
+            authorityName: authorityName ?? "",
         }
     }
 
@@ -124,9 +155,13 @@ export default class DocumentStore {
             ...this.uiState,
             filterUnreadTasks: false,
             filterDocStatus: "",
-            filterStartDate: "",
-            filterEndDate: "",
+            filterIncomingStartDate: "",
+            filterIncomingEndDate: "",
             checkBoxchecked: false,
+            filterIssuedStartDate: "",
+            filterIssuedEndDate: "",
+            signer: "",
+            authorityName: "",
         }
     }
 }

@@ -13,15 +13,26 @@ export const internalDocApi = {
         size,
         title = "",
         fromIncomingDate = "", toIncomingDate = "",
+        fromIssuedDate = "", toIssuedDate = "",
+        signer = "",
+        authorityName = "",
         bearerToken,
     }) {
-        const titleParams = title !== "" ? { title: title } : {}
-        const dateRangeParams = fromIncomingDate !== "" && toIncomingDate !== ""
+        const titleParam = title !== "" ? { title: title } : {}
+        const incomingDateParams = fromIncomingDate !== "" && toIncomingDate !== ""
             ? {
                 from_incoming_date: fromIncomingDate,
                 to_incoming_date: toIncomingDate,
             }
             : {}
+        const issuedDateParams = fromIssuedDate !== "" && toIssuedDate !== ""
+            ? {
+                from_date_issued: fromIssuedDate,
+                to_date_issued: toIssuedDate,
+            }
+            : {}
+        const signerParam = signer !== "" ? { signer: signer } : {}
+        const authorityNameParam = authorityName !== "" ? { authority_name: authorityName } : {}
 
         const response = await axios.get(
             `${this._instance.getUri()}/incomingv2`,
@@ -29,8 +40,11 @@ export const internalDocApi = {
                 params: {
                     page: pageIndex,
                     size: size,
-                    ...titleParams,
-                    ...dateRangeParams,
+                    ...titleParam,
+                    ...incomingDateParams,
+                    ...issuedDateParams,
+                    ...signerParam,
+                    ...authorityNameParam,
                 },
                 headers: {
                     "Authorization": bearerToken,
