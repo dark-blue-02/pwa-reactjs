@@ -796,6 +796,11 @@ video {
   width: 100vw;
 }
 
+.w-max {
+  width: -webkit-max-content;
+  width: max-content;
+}
+
 .min-w-\[52px\] {
   min-width: 52px;
 }

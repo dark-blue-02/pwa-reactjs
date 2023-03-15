@@ -4,6 +4,7 @@ import { TotalDocCount } from "./total";
 import drawing from "../../../../../assets/svg/wacky-drawing.svg";
 import image from "../../../../../assets/svg/planning.svg";
 import { TwoDigits } from "../../../../../utils";
+import { Transition } from "@mantine/core";
 
 
 export default function DocumentCounter() {
@@ -36,12 +37,30 @@ function SmallText({ children }) {
 
 function Counter() {
     const [showTotal, setShowTotal] = useState(true)
+    const animationDuration = 400
 
     return <div onClick={() => setShowTotal(!showTotal)}>
-        {
-            showTotal
-                ? <TotalDocCount />
-                : <DetailDocCount />
-        }
+        <>
+            <Transition mounted={showTotal}
+                transition="slide-right"
+                duration={animationDuration}
+                exitDuration={animationDuration}
+            >
+                {(style) => <div className="absolute" style={style}>
+                    <TotalDocCount />
+                </div>
+                }
+            </Transition>
+            <Transition mounted={!showTotal}
+                transition="slide-right"
+                duration={animationDuration}
+                exitDuration={animationDuration}
+            >
+                {(style) => <div className="absolute" style={style}>
+                    <DetailDocCount />
+                </div>
+                }
+            </Transition>
+        </>
     </div>
 }
