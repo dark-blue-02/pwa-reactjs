@@ -1,9 +1,10 @@
-import { internalDocRepository } from "../../../repository";
+import { authoritoryRepository, internalDocRepository } from "../../../repository";
 import { DataState, DateTime } from "../../../utils";
 import { makeObservable, observable, action } from "mobx"
 
 export default class DocumentStore {
     repository = internalDocRepository
+    authorityRepository = authoritoryRepository
     pageSize = 10
     pageIndex = 0
     incomingDocListState = DataState.unknown
@@ -25,6 +26,11 @@ export default class DocumentStore {
          */
         docs: [],
     }
+    authoritiesList = {
+        state: DataState.unknown,
+        /** @type {{id: any, name: any}[]} */
+        list: [],
+    }
     uiState = {
         searchQuery: "",
         filterUnreadTasks: false,
@@ -42,6 +48,7 @@ export default class DocumentStore {
             incomingDocListState: observable,
             incomingDocList: observable,
             pageIndex: observable,
+            authoritiesList: observable,
             uiState: observable,
             getIncomingDocList: action,
             changePageIndex: action,
@@ -80,6 +87,10 @@ export default class DocumentStore {
         }
 
         this.incomingDocListState = DataState.error
+    }
+
+    async getAllAuthorities() {
+
     }
 
     /**

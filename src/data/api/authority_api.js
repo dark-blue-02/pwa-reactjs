@@ -8,11 +8,14 @@ export const authorityApi = {
     /**
      * @returns {Promise<{id: number, name: string}[]>}
      */
-    async getIncomingAuthorities() {
+    async getIncomingAuthorities({ bearerToken }) {
         const response = await axios.get(
             this._instance.getUri(),
             {
-                params: { type: "INCOMING" }
+                params: { type: "INCOMING" },
+                headers: {
+                    "Authorization": bearerToken,
+                },
             },
         )
         return response.data

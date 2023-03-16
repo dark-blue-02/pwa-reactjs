@@ -21,7 +21,7 @@ export const homeRepository = {
     },
 
     async getWorkScheduleList({ fromDate, toDate }) {
-        // TODO: can't call API when token is expired, can be fix by refresh app
+        // TODO: can't call API when token is refresh, can be fix by refresh app
         const refreshTokenResult = await refreshTokenIfExpired()
         if (refreshTokenResult === Result.failed) {
             return null;

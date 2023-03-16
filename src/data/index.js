@@ -1,3 +1,4 @@
+export { authorityApi } from "./api/authority_api"
 export { internalDocApi } from "./api/internal_doc_api"
 export { workScheduleApi } from "./api/work_schedule_api"
 export { userLocalStorage } from "./storage/user_storage"
